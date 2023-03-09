@@ -4,7 +4,7 @@
 
 In directory `Server` (the root directory for this Java project)
 
-`$ javac -d bin -cp bin:lib/* src/*.java`
+```$ javac -d bin -cp bin:lib/* src/*.java```
 
 ## Run
 
