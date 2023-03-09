@@ -1,0 +1,21 @@
+﻿<Properties StartupConfiguration="{60521D4A-6DEA-4776-A9F3-8496A9375148}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CommunityCompiler" expanded="True">
+            <Node name="CommunityCompiler" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.CommunityCompiler PreferredExecutionTarget="MyAppleMacCatalystID" FirstBuild="True" />
+  <MultiItemStartupConfigurations />
+</Properties>
