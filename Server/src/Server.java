@@ -7,7 +7,8 @@ public abstract class Server {
     protected int port;
     public String name;
     abstract void start();
-    static String dbUrl = "jdbc:sqlite:db/DB.db";
+    static final String dbUrl = "jdbc:sqlite:db/DB.db";
+    public static final String PARAM_DELIMITER = "##";
 
     public Server(int _SERVER_PORT, String _SERVER_NAME) {
         port = _SERVER_PORT;

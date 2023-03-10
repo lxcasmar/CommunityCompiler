@@ -2,13 +2,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,11 +17,11 @@ import org.json.JSONObject;
 
 public class EventThread extends Thread{
     private final Socket socket;
-    private EventServer my_ev;
+    private EventServer es;
     
     public EventThread(Socket _socket, EventServer _my_ev) {
         this.socket = _socket;
-        this.my_ev = _my_ev;
+        this.es = _my_ev;
     }
 
     public void run() {
@@ -52,7 +50,7 @@ public class EventThread extends Thread{
                         response = "ResponseToHello";
                         break;
                     case "CRTEVT":
-                        String [] args = message.toString().split(";")[1].split("##");
+                        String [] args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
                         response = Boolean.toString(createEvent(args));
                         break;
                     case "ALLEVT":

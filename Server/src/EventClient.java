@@ -1,5 +1,3 @@
-import java.util.Optional;
-
 public class EventClient extends Client {
     public String hello() {
         String message = "HELLO;restOfMessage";
@@ -26,12 +24,16 @@ public class EventClient extends Client {
     }
 
     public boolean createEvent(String owneruuid, String name, String description, String location, String startDate, String endDate, String capacity) {
-        String message = "CRTEVT;" + owneruuid + "##" + name + "##" + description + "##" + location + "##" + startDate;
+        String message = "CRTEVT;" + owneruuid + Server.PARAM_DELIMITER
+                                   + name + Server.PARAM_DELIMITER 
+                                   + description + Server.PARAM_DELIMITER 
+                                   + location + Server.PARAM_DELIMITER 
+                                   + startDate;
         if (endDate != null) {
-            message += "##A" + endDate;
+            message += Server.PARAM_DELIMITER + "A" + endDate;
         }
         if (capacity != null) {
-            message += "##B" + capacity;
+            message += Server.PARAM_DELIMITER + "B" + capacity;
         }
 
         try {

@@ -14,6 +14,7 @@ public class App {
     static int ES_PORT;
     static Scanner sc;
     // format for dates is YYYY-MM-DD HH:MM:SS
+    //technically all the '##' should be replaced by Server.PARAM_DELIMITER
     static String _HelpMsg = "- HELP\t\t\t Displays this help message\n" + 
                              "- HELLO\t\t\t Pings both servers to check response/connectivity\n" +
                              "- AUTH;<username>##<password>\t Attempts to authenticate a user\n" +

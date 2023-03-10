@@ -48,7 +48,7 @@ public class UserThread extends Thread{
                         response = "ResponseToHello";
                         break;
                     case "CRTUSR":
-                        String[] args = message.toString().split(";")[1].split("##");
+                        String[] args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
                         response = Boolean.toString(createUser(args[0], args[1], args[2], args[3], args[4]));
                         break;
                     case "ALLUSR":
@@ -58,7 +58,7 @@ public class UserThread extends Thread{
                         response = selectUser(message.toString().split(";")[1]);
                         break;
                     case "AUTH":
-                        args = message.toString().split(";")[1].split("##");
+                        args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
                         response = Boolean.toString(auth(args[0], args[1]));
                         break;
                     default:

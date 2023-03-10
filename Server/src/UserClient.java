@@ -25,7 +25,12 @@ public class UserClient extends Client{
     }
 
     public boolean createUser(String username, String password, String email, String phone, String isAdmin) {
-        String message = "CRTUSR;" + username + "##" + password + "##" + email + "##" + phone + "##" + isAdmin;
+        String message = "CRTUSR;" 
+                        + username + Server.PARAM_DELIMITER
+                        + password + Server.PARAM_DELIMITER 
+                        + email + Server.PARAM_DELIMITER
+                        + phone + Server.PARAM_DELIMITER 
+                        + isAdmin;
         try {
             System.out.println("Sending message: " + message);
             output.write(message.getBytes());
@@ -97,7 +102,7 @@ public class UserClient extends Client{
     }
 
     public boolean auth(String username, String password) {
-        String message = "AUTH;" + username + "##" + password;
+        String message = "AUTH;" + username + Server.PARAM_DELIMITER + password;
         try {
             // send message to server
             output.write(message.getBytes());
