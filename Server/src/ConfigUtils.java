@@ -1,36 +1,62 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.HashMap;
-import java.util.Scanner;
 
 import javax.crypto.SecretKey;
 
 public class ConfigUtils {
-    private static String CONFIG_FILE = "config.txt";
-    private static HashMap<String, String> configs;
-
-    // keeping the configs in memory is a bad idea.... should delete this
-    public static void parseAll() {
-        configs = new HashMap<String, String>();
+    public static String getConfig(String key) {
+        String path = "config/" + key + ".enc";
+        SecretKey configKey = KeyStoreGenerator.recoverKey();
         try {
-            Scanner scanner = new Scanner(new File(CONFIG_FILE));
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String key = line.split("=")[0];
-                String value = line.split("=")[1];
-                configs.put(key, value);
+            byte[] contents = Files.readAllBytes(new File(path).toPath());
+            byte[] iv = ByteUtils.subarray(contents, 0, 16);
+            byte[] ciphertext = ByteUtils.subarray(contents, 16, contents.length);
+            byte[] plaintext = AES.decrypt(ciphertext, iv, configKey);
+            return new String(plaintext);
+        } catch (IOException e) {
+            e.printStackTrace();   
+        }
+        return null;
+    }
+
+    public static void encryptConfigs() {
+        // reload AES key from keystore
+        SecretKey configKey = KeyStoreGenerator.recoverKey();
+        // encrypt the e config file
+        try {
+            File configDirectory = new File("config");
+            File[] configFiles = configDirectory.listFiles();
+            for (File f : configFiles) {
+                byte[] contents = Files.readAllBytes(f.toPath());
+                byte[][] encrypted = AES.encrypt(contents, configKey);
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(ByteUtils.concat(encrypted[1], encrypted[0]));
+                fos.close();
             }
-            scanner.close();
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static String getConfig(String key) {
-        return configs.get(key);
+    private static void decryptConfigs() {
+        SecretKey configKey = KeyStoreGenerator.recoverKey();
+        try {
+            File configDirectory = new File("config");
+            File[] configFiles = configDirectory.listFiles();
+            for (File f : configFiles) {
+                byte[] contents = Files.readAllBytes(f.toPath());
+                byte[] iv = ByteUtils.subarray(contents, 0, 16);
+                byte[] ciphertext = ByteUtils.subarray(contents, 16, contents.length);
+                byte[] plaintext = AES.decrypt(ciphertext, iv, configKey);
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(plaintext);
+                fos.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();   
+        }
     }
 
     /**
@@ -42,7 +68,7 @@ public class ConfigUtils {
     public static void main (String [] args) {
         java.security.Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         // reload AES key from keystore
-        // encrypt the config file
+        // encrypt the e config file
         char mode;
         try {
             mode = args[0].charAt(1);
@@ -54,31 +80,10 @@ public class ConfigUtils {
             return;
         }
         
-        SecretKey configKey = KeyStoreGenerator.recoverKey();
         if (mode == 'e') {
-            // encrypt
-            try {
-                byte[] contents = Files.readAllBytes(new File(CONFIG_FILE).toPath());
-                byte[][] encrypted = AES.encrypt(contents, configKey);
-                FileOutputStream fos = new FileOutputStream(CONFIG_FILE);
-                fos.write(ByteUtils.concat(encrypted[1], encrypted[0]));
-                fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            encryptConfigs();
         } else if (mode == 'd') {
-            // decrypt
-            try {
-                byte[] contents = Files.readAllBytes(new File(CONFIG_FILE).toPath());
-                byte[] iv = ByteUtils.subarray(contents, 0, 16);
-                byte[] ciphertext = ByteUtils.subarray(contents, 16, contents.length);
-                byte[] plaintext = AES.decrypt(ciphertext, iv, configKey);
-                FileOutputStream fos = new FileOutputStream(CONFIG_FILE);
-                fos.write(plaintext);
-                fos.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            decryptConfigs();
         }
     }
 }

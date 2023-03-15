@@ -28,26 +28,26 @@ $ java -cp bin:lib/* App <UserServerPort> [<UserServerHost>] <EventServerPort> [
 ```
 No need to specify either host if running locally. Must specify both hosts otherwise.
 All user I/O happens in Terminal 3. Enter the `HELP` command for information on the supported commands.  
----
+
 # Security Stuff
 
 ## Config file
-`config.txt` will be used to store things like API keys and other important stuff. It is formatted as `key=value` pairs. Because it contains sensitive info, it will be encrypted with an AES256 key. To encrypt the file.
+`config/` will be used to store encrypted files containing API keys and other secrets. As part of the server startup, we need to encrypt all of them. To do so, run the following:
 ```
 Server$ java -cp bin:lib/* ConfigUtils -e
 ```
-NOTE: bad things happen when we encrypt a file multiple times. Before running the line above, make sure the file is not already encrypted.  
-To decrypt the file:
+Whenever adding a new secret, it is important to decrypt the rest of the keys fist, as encrypting a file multiple times can cause issues  
+To decrypt the files:
 ```
 Server$ java -cp bin:lib/* ConfigUtils -d
 ```
 
 ## KeyStore
-As mentioned above, we need an AES cryptographic key to encrypt and decrypt the config file. We need this key to persist beyond memory at runtime, so it needs to be stored on disk. We use Java KeyStores to achieve this.  
+As mentioned above, we need an AES cryptographic key to encrypt and decrypt the config files. We need this key to persist beyond memory at runtime, so it needs to be stored on disk. We use Java KeyStores to achieve this.  
 
 Since there is currently no need for more than a single key, the following creates the keystore file and also stores the AES key in that file
 ```
 Server$ java -cp bin:lib/* KeyStoreGenerator
 ```
-Run the line above before encrypting the `config` file
+Make sure to generate the keystore file BEFORE attempting to encrypt the config files. A good way to check if the file is encrypted is to open the files with *nano*. If there are a bunch of `?` then it's encrypted.
 The file is password protected, and each key within the file is also protected.
