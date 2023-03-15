@@ -22,7 +22,7 @@ public class App {
                              "- SELEVT;<UUID>\t\t Gets event information from UUID\n" +
                              "- CRTUSR;<username>##<password>##<email>##<phoneNumber>##<is_admin>\t Creates a new user\n" +
                              "- CRTEVT;<owneruuid>##<name>##<description>##<location>##<start>##[<end>]##[<capacity>]    Creates a new event. Time in YYYY-MM-DD HH:MM:SS\n" +
-                             "- SEARCH;<?>\t\t Searches for an event based on certain parameters\n" +
+                             "- SRCHEVT;<column>##<value>\t\t Searches for an event based on certain parameters\n" +
                              "- ALLUSR\t\t\t returns list of all users in the database\n" +
                              "- ALLEVT\t\t\t returns list of all events in the database";
 
@@ -56,6 +56,7 @@ public class App {
     }
 
     public static synchronized void main (String [] args) {
+        java.security.Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         // two cases: 1) <us_port> <es_port> 2) <us_name> <us_port> <es_name> <es_port>
         System.out.println("**** REMEMBER... THIS APP AND THE CLIENT CLASSES MEANT FOR TESTING ***");
         if (args.length < 2) {
@@ -140,7 +141,7 @@ public class App {
                     break;
                 case "CRTEVT":
                     try {
-                        String [] params = input.split(";")[1].split("##");
+                        String [] params = input.split(";")[1].split(Server.PARAM_DELIMITER);
                         Arrays.stream(params).forEach(x -> System.out.println(x));
                         
                         if (!crtevt(params)) {
@@ -159,6 +160,14 @@ public class App {
                     try {
                         String uuid = input.split(";")[1];
                         System.out.println(ec.selectEvent(uuid));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "SRCHEVT":
+                    try {
+                        String [] params = input.split(";")[1].split(Server.PARAM_DELIMITER);
+                        System.out.println(ec.searchEvent(params[0], params[1]));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

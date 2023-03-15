@@ -1,5 +1,6 @@
 public class RunUserServer {
     public static void main(String[] args) {
+        java.security.Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         UserServer server;
         int port = -1;
         String host = null;

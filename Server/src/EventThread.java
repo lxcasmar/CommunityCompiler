@@ -59,6 +59,10 @@ public class EventThread extends Thread{
                     case "SELEVT":
                         response = selectEvent(message.toString().split(";")[1]);
                         break;
+                    case "SRCHEVT":
+                        args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
+                        response = searchEvent(args[0], args[1]);
+                        break;
                     default:
                         response = "Unknown request";
                         break;
@@ -104,7 +108,7 @@ public class EventThread extends Thread{
         String uuid = UUID.randomUUID().toString();
 
         try (Connection conn = DriverManager.getConnection(Server.dbUrl)) {
-            System.out.println(sql);
+            
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, uuid);
             pstmt.setString(2, owneruuid);
@@ -183,6 +187,35 @@ public class EventThread extends Thread{
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, uuid);
+            ResultSet rs = pstmt.executeQuery();
+            JSONArray rows = new JSONArray();
+            while (rs.next()) {
+                JSONObject row = new JSONObject();
+                row.put("uuid", rs.getString("uuid"));
+                row.put("owner", rs.getString("owner"));
+                row.put("name", rs.getString("name"));
+                row.put("description", rs.getString("description"));
+                row.put("location", rs.getString("location"));
+                row.put("startDate", rs.getString("startDate"));
+                row.put("endDate", rs.getString("endDate"));
+                row.put("capacity", rs.getString("capacity"));
+                rows.put(row);
+            }
+
+            String json = rows.toString(4);
+            return json;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private String searchEvent(String column, String value) {
+        String sql = "SELECT * FROM events WHERE " + column + " LIKE " + value;
+
+        try (Connection conn = DriverManager.getConnection(Server.dbUrl);
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             ResultSet rs = pstmt.executeQuery();
             JSONArray rows = new JSONArray();
             while (rs.next()) {

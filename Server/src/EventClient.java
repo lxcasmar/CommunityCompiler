@@ -105,4 +105,26 @@ public class EventClient extends Client {
             return null;
         }
     }
+
+    public String searchEvent(String column, String value) {
+        String message = "SRCHEVT;" + column + Server.PARAM_DELIMITER + value;
+        try {
+            output.write(message.getBytes());
+
+            byte[] buffer = new byte[256];
+            int bytesRead;
+            StringBuilder response = new StringBuilder();
+            while ((bytesRead = input.read(buffer)) != -1) {
+                response.append(new String(buffer, 0, bytesRead));
+                if (input.available() == 0) {
+                    break;
+                }
+            }
+
+            return response.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

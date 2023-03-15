@@ -1,5 +1,6 @@
 public class RunEventServer {
     public static void main(String[] args) {
+        java.security.Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         EventServer server;
         int port = -1;
         String host = null;
