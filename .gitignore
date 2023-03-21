@@ -3,3 +3,9 @@ ClassDiagram.vpp
 .DS_Store
 Server/config copy.txt
 Server/keystore.jceks
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
