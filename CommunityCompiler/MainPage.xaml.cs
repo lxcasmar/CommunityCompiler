@@ -1,4 +1,7 @@
-﻿namespace CommunityCompiler;
+﻿using System;
+using CommunityCompiler.Services;
+
+namespace CommunityCompiler;
 
 public partial class MainPage : ContentPage
 {
@@ -7,6 +10,7 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
+		//Console.WriteLine(new DataService().Connect(2000));
 	}
 
 	private void OnCounterClicked(object sender, EventArgs e)

@@ -8,6 +8,8 @@
 /Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/publish/../CommunityCompiler.app/Contents/MonoBundle/Microsoft.Extensions.Options.dll
 /Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/publish/../CommunityCompiler.app/Contents/MonoBundle/Microsoft.Extensions.Primitives.dll
 /Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/publish/../CommunityCompiler.app/Contents/MonoBundle/Microsoft.Maui.Graphics.dll
+/Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/publish/../CommunityCompiler.app/Contents/MonoBundle/Newtonsoft.Json.dll
+/Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/publish/../CommunityCompiler.app/Contents/MonoBundle/websocket-sharp.dll
 /Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/publish/../CommunityCompiler.app/Contents/MonoBundle/CommunityCompiler.dll
 /Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/publish/../CommunityCompiler.app/Contents/MonoBundle/Microsoft.CSharp.dll
 /Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/publish/../CommunityCompiler.app/Contents/MonoBundle/Microsoft.VisualBasic.Core.dll

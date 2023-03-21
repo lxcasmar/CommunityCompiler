@@ -253,3 +253,5 @@
 /Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/obj/Debug/net6.0-maccatalyst/maccatalyst-x64/CommunityCompiler.pdb
 /Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/obj/Debug/net6.0-maccatalyst/maccatalyst-x64/CommunityCompiler.genruntimeconfig.cache
 /Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/obj/Debug/net6.0-maccatalyst/maccatalyst-x64/ref/CommunityCompiler.dll
+/Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/Newtonsoft.Json.dll
+/Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/websocket-sharp.dll

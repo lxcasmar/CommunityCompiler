@@ -38,3 +38,39 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CommunityCompiler.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
+
+[/Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/Views/EventDetailsView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = CommunityCompiler.Views.EventDetailsView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/EventDetailsView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/EventDetailsView.xaml
+
+[/Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/Views/FavoritesView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = CommunityCompiler.Views.FavoritesView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/FavoritesView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/FavoritesView.xaml
+
+[/Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/Views/HomeView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = CommunityCompiler.Views.HomeView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/HomeView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/HomeView.xaml
+
+[/Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/Views/LoginView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = CommunityCompiler.Views.LoginView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/LoginView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/LoginView.xaml
+
+[/Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/Views/RegisterView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = CommunityCompiler.Views.RegisterView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/RegisterView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/RegisterView.xaml
+
+[/Users/luis/Documents/DocumentsLuisMac/codingStuff/CommunityCompiler/CommunityCompiler/Views/SearchEventsView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = CommunityCompiler.Views.SearchEventsView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/SearchEventsView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/SearchEventsView.xaml

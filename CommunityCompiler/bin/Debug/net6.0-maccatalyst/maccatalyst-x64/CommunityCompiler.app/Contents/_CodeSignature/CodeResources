@@ -51,14 +51,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			F4hYw3ABUlvKEZGU1sn7phT3wt0Jr5Fat5CLB7UKqBM=
+			Ru8n3o2QZA97lNEebnSgeVKP3t+U6vHgiETulfwe/4Y=
 			</data>
 		</dict>
 		<key>MonoBundle/CommunityCompiler.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			v2EQgz849XGHBDw9r4uoXmFRze0W28xiDINnVXMj9uc=
+			wJLvgTnljkZHh987Evod3w5G890Vl8XblI9lGTVdKmQ=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>
@@ -199,6 +199,13 @@
 			<key>hash2</key>
 			<data>
 			fisKTPZCuqy5cDViYJ0GZCKNFkAjBSZRCQnSYRg4SZ8=
+			</data>
+		</dict>
+		<key>MonoBundle/Newtonsoft.Json.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			IsZJ91/OW+fHzNqIgEc7Y072ns8z9dGritiSyvR9Wgc=
 			</data>
 		</dict>
 		<key>MonoBundle/System.AppContext.dll</key>
@@ -1382,6 +1389,13 @@
 			<key>hash2</key>
 			<data>
 			SFTYu0JkCIngw8Np5uW1uvhiHN0IE7n8PvRjn73AkHY=
+			</data>
+		</dict>
+		<key>MonoBundle/websocket-sharp.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			yFw9j653RehfzJeECtgAAo67P5y+WaU6n4pW+qWgHO8=
 			</data>
 		</dict>
 		<key>Resources/AboutAssets.txt</key>
