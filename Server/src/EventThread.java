@@ -1,5 +1,7 @@
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.sql.Connection;
@@ -40,7 +42,9 @@ public class EventThread extends Thread{
                         break;
                     }
                 }
+                
                 String response;
+                System.out.println("Entire Messsage: " + message.toString());
                 String tag = message.toString().split(";")[0];
                 //String args = message.toString().split(":")[1];
                 System.out.println("Received request: " + tag);
