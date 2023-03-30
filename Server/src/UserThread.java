@@ -2,19 +2,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Base64;
-import java.util.Scanner;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -37,8 +31,7 @@ public class UserThread extends Thread{
             InputStream input = socket.getInputStream();
             OutputStream output = socket.getOutputStream();
 
-            handshake(input, output);
-            RFC6455Decoder decoder = new RFC6455Decoder();
+            RFC6455.Handshake(input, output);
 
             Boolean proceed = true;
             do {
@@ -48,20 +41,18 @@ public class UserThread extends Thread{
                 StringBuilder message = new StringBuilder();
                 while ((bytesRead = input.read(buffer)) != -1) {
                     try {
-                        decoder.decode(buffer);
+                        message.append(new String(RFC6455.decode(buffer)));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
-                    message.append(new String(decoder.getPayloadData()));
                     if (input.available() == 0) {
                         break;
                     }
                 }
-                String response;
                 String cleanedMessage = message.toString().strip();
                 String tag = message.toString().split(";")[0];
-                //System.out.println("Entire Messsage: " + cleanedMessage);
+                String response = tag + "\n";
                 System.out.println("Received request: " + tag);
                 switch (tag) {
                     case "HELLO":
@@ -79,15 +70,13 @@ public class UserThread extends Thread{
                         break;
                     case "AUTH":
                         args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
-                        response = Boolean.toString(auth(args[0], args[1]));
+                        response = auth(args[0], args[1]);
                         break;
                     default:
                         response = "Unknown request received";
                         break;
                 }
-                //System.out.println("response: " + response);
-                output.write(response.getBytes());
-                System.out.println("Sent response: " + response);
+                output.write(RFC6455.encode(response, false));
             } while (proceed);
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
@@ -96,68 +85,6 @@ public class UserThread extends Thread{
            System.out.println("*** Connection from " + socket.getInetAddress() + ":" + socket.getPort() + " closed ***");
         }
     }
-
-
-    // private void handshake(InputStream input, OutputStream output) {
-    //     Scanner sc = new Scanner(input, "UTF-8");
-    //     try {
-    //         String data = sc.useDelimiter("\\r\\n\\r\\n").next();
-    //         Matcher get = Pattern.compile("^GET").matcher(data);
-
-    //         if (get.find()) {
-    //             Matcher match = Pattern.compile("Sec-WebSocket-Key: (.*)").matcher(data);
-    //             match.find();
-    //             byte[] response = ("HTTP/1.1 101 Switching Protocols\r\n"
-    //                 + "Connection: Upgrade\r\n"
-    //                 + "Upgrade: websocket\r\n"
-    //                 + "Sec-WebSocket-Accept: "
-    //                 + Base64.getEncoder().encodeToString(MessageDigest.getInstance("SHA-1").digest((match.group(1) + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11").getBytes("UTF-8")))
-    //                 + "\r\n\r\n").getBytes("UTF-8");
-    //             output.write(response, 0, response.length);
-    //         }
-    //     } catch(Exception e) {
-    //         System.err.println("Error: " + e.getMessage());
-    //         e.printStackTrace(System.err);
-    //     }
-    //     sc.close();
-    // }
-
-    public void handshake(InputStream in, OutputStream out) throws IOException {
-        String key = null;
-        byte[] buffer = new byte[1024];
-        int bytes;
-
-        // Read the client handshake request
-        while ((bytes = in.read(buffer)) != -1) {
-            String message = new String(buffer, 0, bytes);
-            if (message.contains("Sec-WebSocket-Key: ")) {
-                key = message.split("Sec-WebSocket-Key: ")[1].split("\r\n")[0];
-                break;
-            }
-        }
-
-        if (key != null) {
-            // Generate the server's response
-            String acceptKey = key + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-            byte[] sha1 = null;
-            try {
-                MessageDigest md = MessageDigest.getInstance("SHA-1");
-                sha1 = md.digest(acceptKey.getBytes("UTF-8"));
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
-            String accept = Base64.getEncoder().encodeToString(sha1);
-            String response = "HTTP/1.1 101 Switching Protocols\r\n"
-                    + "Upgrade: websocket\r\n"
-                    + "Connection: Upgrade\r\n"
-                    + "Sec-WebSocket-Accept: " + accept + "\r\n\r\n";
-
-            // Send the server's response
-            out.write(response.getBytes());
-            out.flush();
-        }
-    }
-
 
     private boolean createUser(String username, String password, String email, String phone, String isAdmin) {
         String uuid = UUID.randomUUID().toString();
@@ -242,7 +169,7 @@ public class UserThread extends Thread{
         return null;
     }    
 
-    private boolean auth(String username, String password) {
+    private String auth(String username, String password) {
         String sql = "SELECT uuid, username, email, password, salt, phone FROM users WHERE username = ?";
 
         try (Connection conn = DriverManager.getConnection(Server.dbUrl);
@@ -250,20 +177,22 @@ public class UserThread extends Thread{
 
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
-            String dbPassword;
-            String dbSalt;
+            String dbPassword, dbSalt, userUUID;
             if (rs.next()) {
                 dbPassword = rs.getString("password");
                 dbSalt = rs.getString("salt");
+                userUUID = rs.getString("uuid");
             } else {
                 // no user with that username
-                return false;
+                return null;
             }
             
-            return BCRYPT.Check(password, dbPassword, Hex.decode(dbSalt));
+            if (BCRYPT.Check(password, dbPassword, Hex.decode(dbSalt))) {
+                return userUUID;
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return false;        
+        return null;        
     }
 }
