@@ -1,28 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CommunityCompiler.Views.HomeView"
-             Title="HomeView">
-    <StackLayout Spacing="50">
-        <Label 
-            Text="This is the homeview!!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
-        <Button
-            x:Name="favorites"
-            Text="Navigate to FavoritesView"
-            Clicked="favoriteBtn_clicked" />
-
-        <Button
-            x:Name="search"
-            Text="Navigate to SearchEventsView"
-            Clicked="searchEventBtn_clicked"/>
-
-        <Button
-            x:Name="profileSetting"
-            Text="Navigate to profileSetting"
-            Clicked="profileSettingBtn_clicked" />
-
-    </StackLayout>
-</ContentPage>
+             x:Class="CommunityCompiler.Views.BottomNavTab"
+             xmlns:local="clr-namespace:CommunityCompiler.Views"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             android:TabbedPage.IsSwipePagingEnabled="False"
+             BarBackgroundColor="LightGray"
+             SelectedTabColor="Black"
+             UnselectedTabColor="DarkSlateGray"
+             Title="BottomNavTab">
+    <local:HomeView Title="Home"/>
+    <local:SearchEventsView Title="Search"/>
+    <local:FavoritesView Title="Favorites"/>
+    <local:SettingView Title="Settings"/>
+</TabbedPage>

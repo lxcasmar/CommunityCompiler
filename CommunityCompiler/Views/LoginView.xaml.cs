@@ -9,7 +9,7 @@ public partial class LoginView : ContentPage
 
     private async void homeBtn_clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new HomeView());
+        await Navigation.PushAsync(new BottomNavTab());
     }
 
     private async void registerBtn_clicked(object sender, EventArgs e)

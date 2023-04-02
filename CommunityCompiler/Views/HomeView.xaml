@@ -3,26 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CommunityCompiler.Views.HomeView"
              Title="HomeView">
-    <StackLayout Spacing="50">
+    <StackLayout VerticalOptions="CenterAndExpand">
         <Label 
             Text="This is the homeview!!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-
-        <Button
-            x:Name="favorites"
-            Text="Navigate to FavoritesView"
-            Clicked="favoriteBtn_clicked" />
-
-        <Button
-            x:Name="search"
-            Text="Navigate to SearchEventsView"
-            Clicked="searchEventBtn_clicked"/>
-
-        <Button
-            x:Name="profileSetting"
-            Text="Navigate to profileSetting"
-            Clicked="profileSettingBtn_clicked" />
-
     </StackLayout>
 </ContentPage>

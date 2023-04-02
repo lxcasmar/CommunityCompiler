@@ -3,26 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CommunityCompiler.Views.FavoritesView"
              Title="FavoritesView">
-    <StackLayout Spacing="50">
+    <StackLayout VerticalOptions="CenterAndExpand">
         <Label 
             Text="This is the favorites page!!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-
-        <Button
-            x:Name="search"
-            Text="Navigate to SearchView"
-            Clicked="searchBtn_clicked" />
-
-        <Button
-            x:Name="setting"
-            Text="Navigate to SettingView"
-            Clicked="settingBtn_clicked" />
-
-        <Button
-            x:Name="home"
-            Text="Navigate to HomeView"
-            Clicked="homeBtn_clicked" />
-
     </StackLayout>
 </ContentPage>
