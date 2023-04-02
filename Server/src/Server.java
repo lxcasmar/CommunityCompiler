@@ -1,3 +1,5 @@
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -5,14 +7,26 @@ import java.sql.SQLException;
 
 public abstract class Server {
     protected int port;
-    public String name;
+    public String host;
     abstract void start();
     static final String dbUrl = "jdbc:sqlite:db/DB.db";
     public static final String PARAM_DELIMITER = "##";
 
     public Server(int _SERVER_PORT, String _SERVER_NAME) {
         port = _SERVER_PORT;
-        name = _SERVER_NAME;
+        host = _SERVER_NAME;
+    }
+
+    public Server(int _SERVER_PORT) {
+        port = _SERVER_PORT;
+        InetAddress inetAddress;
+        try {
+            inetAddress = InetAddress.getLocalHost();
+            String ipAddress = inetAddress.getHostAddress();
+            host = ipAddress;
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
     public int GetPort() {
@@ -20,7 +34,7 @@ public abstract class Server {
     }
 
     public String GetName() {
-        return name;
+        return host;
     }
     abstract void CreateNewtable();
     

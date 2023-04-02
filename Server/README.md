@@ -13,16 +13,32 @@ $ javac -d bin -cp bin:lib/* src/*.java
 1. Open 3 terminal windows 
 2. Terminal 1 - User server.
 ```
-$ java -cp bin:lib/* RunUserServer [<port>] [<name>]
+$ java -cp bin:lib/* RunUserServer <port> [<host>]
 ```
-Note, if you want to specify host, then must also specify port for now... This should probably be changed for a more elegant way to handle arguments
+Available commands:
+	- HELLO
+	- CRTUSR
+	- ALLUSR
+	- SELUSR
+	- AUTH
+
+These can be called using the `UserDataService` class in the .NET application
+
 3. Terminal 2 - Event server.
 ```
-$ java -cp bin:lib/* RunEventServer [<port>] [<name>]
+$ java -cp bin:lib/* RunEventServer <port> [<host>]
 ```
-At this point, both servers are running and the databases should be functioning. To test the functionalities, there is also corresponding clients for each of the servers. Note that the following will not be used in the final project, as the phone application will act as the client.
+Available commands:
+	- HELLO
+	- CRTEVT
+	- ALLEVT
+	- SELEVT
+	- SRCHEVT
 
-4. Terminal 3 - Clients
+These can be called using the `EventDataService` class in the .NET application.
+At this point, both servers are running and the databases should be functioning. 
+
+4. Terminal 3 - Clients (This is for legacy testing... it's probably not very useful anymore)
 ```
 $ java -cp bin:lib/* App <UserServerPort> [<UserServerHost>] <EventServerPort> [<EvenServerHost>]
 ```
@@ -31,8 +47,8 @@ All user I/O happens in Terminal 3. Enter the `HELP` command for information on 
 
 # Security Stuff
 
-## Config file
-`config/` will be used to store encrypted files containing API keys and other secrets. As part of the server startup, we need to encrypt all of them. To do so, run the following:
+## Config files
+`config/` will be used to store encrypted files containing API keys and other secrets. As part of the server startup, we need to encrypt all of them. To do so, run the following:
 ```
 Server$ java -cp bin:lib/* ConfigUtils -e
 ```

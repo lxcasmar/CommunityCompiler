@@ -1,7 +1,5 @@
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.sql.Connection;
@@ -32,6 +30,9 @@ public class EventThread extends Thread{
             InputStream input = socket.getInputStream();
             OutputStream output = socket.getOutputStream();
             Boolean proceed = true;
+
+            RFC6455.Handshake(input, output);
+
             do {
                 byte[] buffer = new byte[256];
                 int bytesRead;
@@ -72,7 +73,7 @@ public class EventThread extends Thread{
                         break;
                 }
 
-                output.write(response.getBytes());
+                output.write(RFC6455.encode(response, false));
             } while (proceed);
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());

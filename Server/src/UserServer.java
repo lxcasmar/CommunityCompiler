@@ -1,5 +1,6 @@
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -37,6 +38,8 @@ public class UserServer extends Server {
                 thread = new UserThread(sock, this);
                 thread.start();
             }
+        } catch (SocketException e) {
+            System.out.println("SocketException: " + e.getMessage());
         } catch(Exception e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace(System.err);

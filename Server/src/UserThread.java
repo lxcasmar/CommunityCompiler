@@ -9,8 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+
 import org.bouncycastle.util.encoders.Hex;
 
 public class UserThread extends Thread{
@@ -27,28 +30,36 @@ public class UserThread extends Thread{
             System.out.println("*** New connection from " + socket.getInetAddress() + ":" + socket.getPort() + " ***");
             InputStream input = socket.getInputStream();
             OutputStream output = socket.getOutputStream();
+
+            RFC6455.Handshake(input, output);
+
             Boolean proceed = true;
             do {
                 // read message from client
-                byte[] buffer = new byte[256];
+                byte[] buffer = new byte[1024];
                 int bytesRead;
                 StringBuilder message = new StringBuilder();
                 while ((bytesRead = input.read(buffer)) != -1) {
-                    message.append(new String(buffer, 0, bytesRead));
+                    try {
+                        message.append(new String(RFC6455.decode(buffer)));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     if (input.available() == 0) {
                         break;
                     }
                 }
-                String response;
+                String cleanedMessage = message.toString().strip();
                 String tag = message.toString().split(";")[0];
-                //String args = message.toString().split(":")[1];
+                String response = tag + "\n";
                 System.out.println("Received request: " + tag);
                 switch (tag) {
                     case "HELLO":
                         response = "ResponseToHello";
                         break;
                     case "CRTUSR":
-                        String[] args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
+                        String[] args = cleanedMessage.split(";")[1].split(Server.PARAM_DELIMITER);
                         response = Boolean.toString(createUser(args[0], args[1], args[2], args[3], args[4]));
                         break;
                     case "ALLUSR":
@@ -59,18 +70,19 @@ public class UserThread extends Thread{
                         break;
                     case "AUTH":
                         args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
-                        response = Boolean.toString(auth(args[0], args[1]));
+                        response = auth(args[0], args[1]);
                         break;
                     default:
                         response = "Unknown request received";
                         break;
                 }
-                
-                output.write(response.getBytes());
+                output.write(RFC6455.encode(response, false));
             } while (proceed);
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace(System.err);
+        } finally {
+           System.out.println("*** Connection from " + socket.getInetAddress() + ":" + socket.getPort() + " closed ***");
         }
     }
 
@@ -157,7 +169,7 @@ public class UserThread extends Thread{
         return null;
     }    
 
-    private boolean auth(String username, String password) {
+    private String auth(String username, String password) {
         String sql = "SELECT uuid, username, email, password, salt, phone FROM users WHERE username = ?";
 
         try (Connection conn = DriverManager.getConnection(Server.dbUrl);
@@ -165,20 +177,22 @@ public class UserThread extends Thread{
 
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
-            String dbPassword;
-            String dbSalt;
+            String dbPassword, dbSalt, userUUID;
             if (rs.next()) {
                 dbPassword = rs.getString("password");
                 dbSalt = rs.getString("salt");
+                userUUID = rs.getString("uuid");
             } else {
                 // no user with that username
-                return false;
+                return null;
             }
             
-            return BCRYPT.Check(password, dbPassword, Hex.decode(dbSalt));
+            if (BCRYPT.Check(password, dbPassword, Hex.decode(dbSalt))) {
+                return userUUID;
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return false;        
+        return null;        
     }
 }

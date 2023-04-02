@@ -6,12 +6,10 @@ namespace CommunityCompiler;
 public partial class MainPage : ContentPage
 {
 	int count = 0;
-
 	public MainPage()
 	{
 		InitializeComponent();
-		//Console.WriteLine(new DataService().Connect(2000));
-	}
+    }
 
 	private void OnCounterClicked(object sender, EventArgs e)
 	{
@@ -23,7 +21,7 @@ public partial class MainPage : ContentPage
 			CounterBtn.Text = $"Clicked {count} times";
 
 		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+    }
 }
 
 
