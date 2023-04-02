@@ -3,26 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CommunityCompiler.Views.SearchEventsView"
              Title="SearchEventsView">
-    <StackLayout Spacing="50">
+    <StackLayout VerticalOptions="CenterAndExpand">
         <Label 
             Text="This is the search page!!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-
-        <Button
-            x:Name="favorites"
-            Text="Navigate to FavoritesView"
-            Clicked="favoriteBtn_clicked" />
-
-        <Button
-            x:Name="setting"
-            Text="Navigate to SettingView"
-            Clicked="settingBtn_clicked" />
-
-        <Button
-            x:Name="home"
-            Text="Navigate to HomeView"
-            Clicked="homeBtn_clicked" />
-
     </StackLayout>
 </ContentPage>

@@ -1,8 +1,8 @@
 ﻿namespace CommunityCompiler.Views;
 
-public partial class SettingView : ContentPage
+public partial class BottomNavTab : TabbedPage
 {
-	public SettingView()
+	public BottomNavTab()
 	{
 		InitializeComponent();
 	}
