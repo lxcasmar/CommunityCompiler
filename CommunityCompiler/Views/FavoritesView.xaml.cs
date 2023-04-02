@@ -6,4 +6,19 @@ public partial class FavoritesView : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void searchBtn_clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new SearchEventsView());
+    }
+
+    private async void settingBtn_clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new SettingView());
+    }
+
+    private async void homeBtn_clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new HomeView());
+    }
 }
