@@ -3,10 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CommunityCompiler.Views.FavoritesView"
              Title="FavoritesView">
-    <VerticalStackLayout>
+    <StackLayout Spacing="50">
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="This is the favorites page!!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+        <Button
+            x:Name="search"
+            Text="Navigate to SearchView"
+            Clicked="searchBtn_clicked" />
+
+        <Button
+            x:Name="setting"
+            Text="Navigate to SettingView"
+            Clicked="settingBtn_clicked" />
+
+        <Button
+            x:Name="home"
+            Text="Navigate to HomeView"
+            Clicked="homeBtn_clicked" />
+
+    </StackLayout>
 </ContentPage>

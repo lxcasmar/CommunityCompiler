@@ -1,26 +1,25 @@
 ﻿using System;
+using CommunityCompiler.Views;
+
 using CommunityCompiler.Services;
 
 namespace CommunityCompiler;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
 	public MainPage()
 	{
 		InitializeComponent();
     }
 
-	private void OnCounterClicked(object sender, EventArgs e)
+	private async void loginBtn_clicked(object sender, EventArgs e)
 	{
-		count++;
+        await Navigation.PushAsync(new LoginView());
+    }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
+    private async void registerBtn_clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new RegisterView());
     }
 }
 

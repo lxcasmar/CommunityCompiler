@@ -1,8 +1,8 @@
 ﻿namespace CommunityCompiler.Views;
 
-public partial class SearchEventsView : ContentPage
+public partial class SettingView : ContentPage
 {
-	public SearchEventsView()
+	public SettingView()
 	{
 		InitializeComponent();
 	}
@@ -12,9 +12,9 @@ public partial class SearchEventsView : ContentPage
         await Navigation.PushAsync(new FavoritesView());
     }
 
-    private async void settingBtn_clicked(object sender, EventArgs e)
+    private async void searchEventBtn_clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new SettingView());
+        await Navigation.PushAsync(new SearchEventsView());
     }
 
     private async void homeBtn_clicked(object sender, EventArgs e)
