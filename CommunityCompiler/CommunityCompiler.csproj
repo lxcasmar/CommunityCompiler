@@ -63,6 +63,13 @@
 	  <None Remove="ViewModels\" />
 	  <None Remove="Interfaces\" />
 	  <None Remove="Services\" />
+	  <None Remove="Resources\Images\unselected_search.png" />
+	  <None Remove="Resources\Images\selected_settings.png" />
+	  <None Remove="Resources\Images\unselected_settings.png" />
+	  <None Remove="Resources\Images\selected_search.png" />
+	  <None Remove="Resources\Images\unselected_home.png" />
+	  <None Remove="Resources\Images\unselected_favorites.png" />
+	  <None Remove="Resources\Images\selected_home.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -70,5 +77,16 @@
 	  <Folder Include="ViewModels\" />
 	  <Folder Include="Interfaces\" />
 	  <Folder Include="Services\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\unselected_search.png" />
+	  <BundleResource Include="Resources\Images\selected_settings.png" />
+	  <BundleResource Include="Resources\Images\unselected_settings.png" />
+	  <BundleResource Include="Resources\Images\selected_search.png" />
+	  <BundleResource Include="Resources\Images\selected_favorites.png" />
+	  <BundleResource Include="Resources\Images\unselected_home.png" />
+	  <BundleResource Include="Resources\Images\unselected_favorites.png" />
+	  <BundleResource Include="Resources\Images\selected_home.png" />
+	  <BundleResource Include="Resources\Images\unselected_settings 2.png" />
 	</ItemGroup>
 </Project>
