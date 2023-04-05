@@ -12,12 +12,15 @@ namespace CommunityCompiler.ViewModels
 		{
 		}
 
+		//TODO: consider moving navigation to a serparate service
 		public ICommand NavigateToCommand { get; set; } = new Command((route) =>
 		{
+            var navigation = Shell.Current.Navigation;
+
 			MainThread.BeginInvokeOnMainThread(async () =>
 			{
-				await Shell.Current.GoToAsync(route as String);
-			});
+				await Shell.Current.GoToAsync(route as String, false);
+            });
 
 			Console.WriteLine($"Pushing Navigation to {route}");
 		});
