@@ -1,4 +1,5 @@
-﻿namespace CommunityCompiler;
+﻿using CommunityCompiler.ViewModels;
+namespace CommunityCompiler;
 
 public static class MauiProgram
 {
@@ -11,7 +12,8 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+			})
+			.Services.AddSingleton<SearchEventsViewModel>();
 
 		return builder.Build();
 	}

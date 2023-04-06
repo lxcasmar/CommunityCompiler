@@ -35,6 +35,15 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 
+            <Button
+                
+                x:Name = "SearchEventPage"
+                Text = "Search Events"
+                Command="{Binding NavigateToCommand}"
+                CommandParameter="Views/SearchEventsView"
+                HorizontalOptions="Center"
+                />
+
         </VerticalStackLayout>
     </ScrollView>
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using CommunityCompiler.Services;
+using CommunityCompiler.ViewModels;
 
 namespace CommunityCompiler;
 
@@ -10,8 +11,11 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
+		//BindingContext = _ViewModel = viewModel;
 		//Console.WriteLine(new DataService().Connect(2000));
 	}
+
+	SearchEventsViewModel _ViewModel;
 
 	private void OnCounterClicked(object sender, EventArgs e)
 	{

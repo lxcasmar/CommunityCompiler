@@ -1,12 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:searchHandlers ="clr-namespace:CommunityCompiler.Search_Handlers"
+             xmlns:viewModels ="clr-namespace:CommunityCompiler.ViewModels"
              x:Class="CommunityCompiler.Views.SearchEventsView"
-             Title="SearchEventsView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Shell.NavBarIsVisible="False"
+             Shell.BackgroundColor="White"
+             Shell.TitleColor="Black">
+
+    <ContentPage.Content>
+        <StackLayout>
+        <Image Source="splash.svg" Margin="-120,-160,0,0" HeightRequest="400" WidthRequest="340"></Image>
+            <SearchBar x:Name="Bruh" Placeholder="Search events by name, date, location, etc." 
+                   Margin="25,-150,0,0" FontSize="Micro" BackgroundColor="White"
+                   TextChanged="SearchBar_TextChanged">
+            </SearchBar>
+            <ListView ItemsSource="{Binding Events}" IsPullToRefreshEnabled="True" x:Name="EventsListView" Margin=" 20,0,0,0" ItemSelected="OnButtonClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" TextColor="Black">
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        
+
+    </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

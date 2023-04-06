@@ -6,4 +6,9 @@ public partial class EventDetailsView : ContentPage
 	{
 		InitializeComponent();
 	}
+
+	public async void OnBackButtonClick(object sender, EventArgs e)
+	{
+		await Shell.Current.GoToAsync("..");
+    }
 }
