@@ -1,3 +1,0 @@
-*********** THIS IS A LOCAL BACKUP DO NOT DELETE ************
-seat_geek_api_key=741da94512dadb4a9f1ba8b15e2e250a22af0444425d97c2fb3410f06b45a9f3
-seat_geek_client_id=MzIzNTM0MzN8MTY3ODczMTczNy4xOTUwNDk
