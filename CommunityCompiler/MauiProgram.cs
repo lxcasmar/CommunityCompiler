@@ -28,7 +28,9 @@ public static class MauiProgram
 			.AddSingleton<SearchEventsViewModel>()
 			.AddSingleton<SearchEventsView>()
 			.AddSingleton<NavBarViewModel>()
-			.AddSingleton<NavBar>();
+			.AddSingleton<NavBar>()
+			.AddSingleton<FavoritesView>()
+			.AddSingleton<FavoritesViewModel>();
 
 		return _Builder.Build();
 	}

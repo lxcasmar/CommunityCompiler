@@ -13,7 +13,7 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute("Views/FavoritesView", typeof(FavoritesView));
 		Routing.RegisterRoute("Views/FeaturedEventsView", typeof(FeaturedEventsView));
 		Routing.RegisterRoute("Views/SearchEventsView", typeof(SearchEventsView));
-		Routing.RegisterRoute("Views/SettingsView", typeof(SettingView));
+		Routing.RegisterRoute("Views/SettingView", typeof(SettingView));
 		InitializeComponent();
 
 		Shell.SetNavBarIsVisible(this, false);
