@@ -52,7 +52,17 @@ namespace CommunityCompiler.Services
 
 		public void Send(String data)
 		{
+			if (!Connected())
+			{
+				Console.WriteLine($"[ERROR] Could not send {data}. Not conencted to server");
+				return;
+			}
 			Sock?.Send(data);
+		}
+
+		public bool Connected()
+		{
+			return Sock.IsAlive;
 		}
 	}
 }

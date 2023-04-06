@@ -1,4 +1,5 @@
-﻿using CommunityCompiler.ViewModels;
+﻿using CommunityCompiler.Services;
+using CommunityCompiler.ViewModels;
 using CommunityCompiler.Views;
 
 namespace CommunityCompiler;
@@ -30,7 +31,9 @@ public static class MauiProgram
 			.AddSingleton<NavBarViewModel>()
 			.AddSingleton<NavBar>()
 			.AddSingleton<FavoritesView>()
-			.AddSingleton<FavoritesViewModel>();
+			.AddSingleton<FavoritesViewModel>()
+			.AddSingleton<EventDataService>()
+			.AddSingleton<UserDataService>();
 
 		return _Builder.Build();
 	}

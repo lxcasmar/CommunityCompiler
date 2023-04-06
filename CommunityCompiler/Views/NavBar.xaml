@@ -24,7 +24,7 @@
 
     <StackLayout Grid.Column="1" Orientation="Horizontal" Margin="0,0,10,0">
         <!-- Optional logo or branding -->
-        <Label Text="Community Compiler" FontSize="Large" />
+        <Label Text="CC" FontSize="Large" />
     </StackLayout>
     </Grid>
 </ContentView>
