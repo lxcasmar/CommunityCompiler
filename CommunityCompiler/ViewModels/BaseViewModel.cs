@@ -15,8 +15,6 @@ namespace CommunityCompiler.ViewModels
 		{
 		}
 
-		//TODO: consider moving navigation to a serparate service
-		// Remember it's possible to pass parameters via route
 		public ICommand NavigateToCommand { get; set; } = new Command((route) =>
 		{
             MainThread.BeginInvokeOnMainThread(async () =>

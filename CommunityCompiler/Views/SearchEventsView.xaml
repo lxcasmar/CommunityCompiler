@@ -4,7 +4,7 @@
              x:Class="CommunityCompiler.Views.SearchEventsView"
              xmlns:local="clr-namespace:CommunityCompiler.Views"
              Title="SearchEventsView">
-    <StackLayout VerticalOptions="CenterAndExpand">
+    <StackLayout >
         <local:NavBar />
         <Label 
             Text="This is the search page!!"

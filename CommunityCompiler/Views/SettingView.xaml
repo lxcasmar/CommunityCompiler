@@ -4,7 +4,7 @@
              x:Class="CommunityCompiler.Views.SettingView"
              xmlns:local="clr-namespace:CommunityCompiler.Views"
              Title="SettingView">
-    <StackLayout VerticalOptions="CenterAndExpand">
+    <StackLayout >
         <local:NavBar/>
         <Label 
             Text="This is the profileSetting page!!"
