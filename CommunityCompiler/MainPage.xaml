@@ -9,7 +9,7 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <Button
+        <!--<Button
             x:Name="login"
             Text="Navigate to LoginView"
             Clicked="loginBtn_clicked" />
@@ -17,7 +17,7 @@
         <Button
             x:Name="register"
             Text="Navigate to RegisterView"
-            Clicked="registerBtn_clicked" />
+            Clicked="registerBtn_clicked" />-->
 
     </StackLayout>
 

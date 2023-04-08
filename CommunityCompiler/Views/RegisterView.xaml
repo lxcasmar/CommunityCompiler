@@ -11,14 +11,9 @@
             HorizontalOptions="Center" />
 
         <Button
-            x:Name="home"
-            Text="Navigate to HomeView"
-            Clicked="homeBtn_clicked" />
-
-        <Button
             x:Name="login"
-            Text="Navigate to loginView"
-            Clicked="loginBtn_clicked" />
+            Text="Already registerd?"
+            Command="{Binding NavigateToCommand}"
+            CommandParameter="Views/LoginView"/>
     </StackLayout>
-
 </ContentPage>

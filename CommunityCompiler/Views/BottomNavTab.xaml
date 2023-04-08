@@ -10,8 +10,5 @@
              SelectedTabColor="Black"
              UnselectedTabColor="DarkSlateGray"
              Title="BottomNavTab">
-    <local:HomeView Title="Home"/>
-    <local:SearchEventsView Title="Search"/>
-    <local:FavoritesView Title="Favorites"/>
-    <local:SettingView Title="Settings"/>
+
 </TabbedPage>

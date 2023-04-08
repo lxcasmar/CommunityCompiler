@@ -9,11 +9,6 @@ public partial class RegisterView : ContentPage
 		InitializeComponent();
 	}
 
-    private async void homeBtn_clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new BottomNavTab());
-    }
-
     private async void loginBtn_clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new LoginView());
