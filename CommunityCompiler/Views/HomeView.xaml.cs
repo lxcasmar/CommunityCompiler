@@ -1,4 +1,4 @@
-﻿using CommunityCompiler.ViewModels;
+using CommunityCompiler.ViewModels;
 
 namespace CommunityCompiler.Views;
 
@@ -11,14 +11,19 @@ public partial class HomeView : ContentPage
         BindingContext = _ViewModel = viewModel;
 	}
 
+    public HomeView()
+    {
+        InitializeComponent();
+    }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
 
 
-        if (!_ViewModel.UserSignedIn)
-        {
-            //_ViewModel.NavigateToCommand.Execute("Views/RegisterView");
-        }
+        //if (!_ViewModel.UserSignedIn)
+        //{
+        //    //_ViewModel.NavigateToCommand.Execute("Views/RegisterView");
+        //}
     }
 }
