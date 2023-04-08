@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:searchHandlers ="clr-namespace:CommunityCompiler.Search_Handlers"
              xmlns:viewModels ="clr-namespace:CommunityCompiler.ViewModels"
+             xmlns:controls="clr-namespace:CommunityCompiler.Controls"
              x:Class="CommunityCompiler.Views.SearchEventsView"
              Shell.NavBarIsVisible="False"
              Shell.BackgroundColor="White"
              Shell.TitleColor="Black">
-
     <ContentPage.Content>
         <StackLayout>
+            <controls:PageHeader />
             <Image Source="splash.svg" Margin="-120,-160,0,0" HeightRequest="400" WidthRequest="340"></Image>
             <SearchBar x:Name="Bruh" Placeholder="Search events by name, date, location, etc." 
                    Margin="25,-150,0,0" FontSize="Micro" BackgroundColor="White"

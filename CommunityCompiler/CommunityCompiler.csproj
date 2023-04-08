@@ -63,6 +63,9 @@
 	  <None Remove="ViewModels\" />
 	  <None Remove="Interfaces\" />
 	  <None Remove="Services\" />
+	  <None Remove="Controls\" />
+	  <None Remove="Resources\Images\logo-no-background.png" />
+	  <None Remove="Resources\Images\backbutton.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -70,5 +73,11 @@
 	  <Folder Include="ViewModels\" />
 	  <Folder Include="Interfaces\" />
 	  <Folder Include="Services\" />
+	  <Folder Include="Controls\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\header.png" />
+	  <BundleResource Include="Resources\Images\backbutton.png" />
+	  <BundleResource Include="Resources\Images\header 7.png" />
 	</ItemGroup>
 </Project>
