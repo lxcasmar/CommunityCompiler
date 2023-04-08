@@ -6,7 +6,6 @@
              Title="HomeView">
 
     <StackLayout>
-        <local:NavBar/>
         <Label 
             Text="This is the homeview!!"
             VerticalOptions="Center" 
