@@ -4,6 +4,7 @@
              x:Class="CommunityCompiler.Views.HomeView"
              xmlns:local="clr-namespace:CommunityCompiler.Views"
              Title="HomeView">
+
     <StackLayout>
         <local:NavBar/>
         <Label 
