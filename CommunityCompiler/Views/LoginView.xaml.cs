@@ -1,4 +1,4 @@
-﻿namespace CommunityCompiler.Views;
+namespace CommunityCompiler.Views;
 
 public partial class LoginView : ContentPage
 {
@@ -9,7 +9,7 @@ public partial class LoginView : ContentPage
 
     private async void homeBtn_clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new BottomNavTab());
+        await Navigation.PushAsync(new NavBar());
     }
 
     private async void registerBtn_clicked(object sender, EventArgs e)
