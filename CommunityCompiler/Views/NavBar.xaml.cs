@@ -15,6 +15,24 @@ public partial class NavBar : TabbedPage
         nav_favorites.IconImageSource = "unselected_favorites.png";
 
         CurrentPageChanged += CurrentPageHasChanged;
+
+        MessagingCenter.Subscribe<Object, int>(this, "Search", ((arg, idx) => {
+
+            CurrentPage = this.Children[1];
+
+        }));
+
+        MessagingCenter.Subscribe<Object, int>(this, "Favorites", ((arg, idx) => {
+
+            CurrentPage = this.Children[2];
+
+        }));
+
+        MessagingCenter.Subscribe<Object, int>(this, "Settings", ((arg, idx) => {
+
+            CurrentPage = this.Children[3];
+
+        }));
     }
 
     private void CurrentPageHasChanged(object sender, EventArgs e)

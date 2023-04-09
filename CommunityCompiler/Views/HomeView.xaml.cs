@@ -14,6 +14,26 @@ public partial class HomeView : ContentPage
         BindingContext = _ViewModel;
     }
 
+    private async void addANewEventBtnClicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private async void findAnEventBtnClicked(object sender, EventArgs e)
+    {
+        MessagingCenter.Send<object, int>(this, "Search", 1);
+    }
+
+    private async void goToFavoritesBtnClicked(object sender, EventArgs e)
+    {
+        MessagingCenter.Send<object, int>(this, "Favorites", 2);
+    }
+
+    private async void profileSettingsBtnClicked(object sender, EventArgs e)
+    {
+        MessagingCenter.Send<object, int>(this, "Settings", 3);
+    }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
