@@ -5,12 +5,21 @@
              xmlns:controls="clr-namespace:CommunityCompiler.Controls"
              xmlns:local="clr-namespace:CommunityCompiler.Views"
              Title="FavoritesView">
-
-    <StackLayout>
-        <controls:PageHeader />
-        <Label 
-            Text="This is the FavoritesView!!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackLayout>
+            <controls:PageHeader />
+            <Label 
+                Text="Favorites"
+                FontAttributes="Bold"
+                FontFamily="Bold"
+                FontSize="25"
+                VerticalOptions="Center"
+                Margin="15,0,0,0"
+                HorizontalOptions="Start" />
+        </StackLayout>
+    </Grid>
 </ContentPage>

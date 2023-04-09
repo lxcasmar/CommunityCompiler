@@ -2,19 +2,14 @@
 
 namespace CommunityCompiler.Views;
 
-public partial class CreateEventPopup : Popup
+public partial class PrivacyPopup : Popup
 {
-	public CreateEventPopup()
+	public PrivacyPopup()
 	{
 		InitializeComponent();
 	}
 
     private async void closeBtnClicked(object sender, EventArgs e)
-    {
-        Close();
-    }
-
-    private async void submitBtnClicked(object sender, EventArgs e)
     {
         Close();
     }

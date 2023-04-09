@@ -83,6 +83,9 @@
 	  <None Remove="Resources\Images\person.png" />
 	  <None Remove="Resources\Images\calender.png" />
 	  <None Remove="Resources\Images\close.png" />
+	  <None Remove="Resources\Images\about.png" />
+	  <None Remove="Resources\Images\privacy.png" />
+	  <None Remove="Resources\Images\account.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -109,5 +112,8 @@
 	  <BundleResource Include="Resources\Images\person.png" />
 	  <BundleResource Include="Resources\Images\calender.png" />
 	  <BundleResource Include="Resources\Images\close.png" />
+	  <BundleResource Include="Resources\Images\about.png" />
+	  <BundleResource Include="Resources\Images\privacy.png" />
+	  <BundleResource Include="Resources\Images\account.png" />
 	</ItemGroup>
 </Project>

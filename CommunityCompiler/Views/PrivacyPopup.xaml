@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="CommunityCompiler.Views.PrivacyPopup"
+             Size="300,270">
+    <StackLayout>
+        <ImageButton
+            Source="close.png"
+            Clicked="closeBtnClicked"
+            HorizontalOptions="Start"
+            Margin="10, 10, 0, 0"/>
+        <Label
+            Margin="10, 10, 0, 0"
+            HorizontalOptions="Start"
+            Text="Privacy Policy"
+            FontFamily="Bold"
+            FontSize="Medium"/>
+        <Label
+            Margin="10"
+            VerticalOptions="Center"
+            FontSize="Micro"
+            Text="At Community Compiler, we take the privacy and security of our users' information seriously. We only collect and use information that is necessary to provide our service, such as location data and search queries. We do not sell or share your information with third parties for marketing purposes. Any personal information collected is encrypted and stored securely. We use industry-standard security measures to protect your data from unauthorized access, and regularly review and update our practices to ensure compliance with applicable privacy laws."/>
+    </StackLayout>
+</mct:Popup>

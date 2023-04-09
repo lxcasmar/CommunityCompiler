@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="CommunityCompiler.Views.AboutPopup"
+             Size="300,270">
+    <StackLayout>
+        <ImageButton
+            Source="close.png"
+            Clicked="closeBtnClicked"
+            HorizontalOptions="Start"
+            Margin="10, 10, 0, 0"/>
+        <Label
+            Margin="10, 10, 0, 0"
+            HorizontalOptions="Start"
+            Text="About"
+            FontFamily="Bold"
+            FontSize="Medium"/>
+        <Label
+            Margin="10"
+            VerticalOptions="Center"
+            FontSize="Micro"
+            Text="Community Compiler is an application that simplifies event and service discovery for users. The app compiles a list of nearby events and services into an easy-to-navigate user interface, allowing users to quickly and efficiently find what they are looking for. Whether it's a local festival or a nearby service provider, Community Compiler provides users with the information they need to make informed decisions and get involved in their community. With a focus on user experience and community engagement, Community Compiler is the go-to app for anyone looking to stay informed and connected."/>
+    </StackLayout>
+</mct:Popup>
