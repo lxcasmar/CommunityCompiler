@@ -2,7 +2,9 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CommunityCompiler.Controls.PageHeader"
-             BackgroundColor="LightGray">
+             BackgroundColor="White">
+
+    <!--DON't ADJUST SIZING (this is sized to phone)-->
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,8 +15,9 @@
 
         <Image x:Name="HeaderImage"
                Grid.Column="1"
+               Margin="10"
                Source="header.png"
-               HorizontalOptions="Center"
+               HorizontalOptions="Start"
                VerticalOptions="Center" />
     </Grid>
 </ContentView>

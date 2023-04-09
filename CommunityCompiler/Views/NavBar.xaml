@@ -6,7 +6,7 @@
              xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
              android:TabbedPage.ToolbarPlacement="Bottom"
              android:TabbedPage.IsSwipePagingEnabled="False"
-             BarBackgroundColor="LightGray"
+             BarBackgroundColor="#F4F4F4"
              SelectedTabColor="Black"
              UnselectedTabColor="DarkSlateGray"
              Title="NavBar">

@@ -1,3 +1,4 @@
+using AndroidX.Lifecycle;
 using CommunityCompiler.ViewModels;
 
 namespace CommunityCompiler.Views;
@@ -5,15 +6,12 @@ namespace CommunityCompiler.Views;
 public partial class HomeView : ContentPage
 {
     HomeViewModel _ViewModel;
-	public HomeView(HomeViewModel viewModel)
+	public HomeView()
 	{
 		InitializeComponent();
-        BindingContext = _ViewModel = viewModel;
-	}
 
-    public HomeView()
-    {
-        InitializeComponent();
+        _ViewModel = new HomeViewModel();
+        BindingContext = _ViewModel;
     }
 
     protected override void OnAppearing()

@@ -34,6 +34,12 @@
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\backbutton.png" />
+	  <MauiImage Remove="Resources\Images\header.png" />
+	  <MauiImage Remove="Resources\Images\backbutton.png" />
+	  <MauiImage Remove="Resources\Images\header.png" />
+	</ItemGroup>
+	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
@@ -66,6 +72,15 @@
 	  <None Remove="Controls\" />
 	  <None Remove="Resources\Images\logo-no-background.png" />
 	  <None Remove="Resources\Images\backbutton.png" />
+	  <None Remove="Resources\Images\header.png" />
+	  <None Remove="Resources\Images\pittsburgh-home.jpg" />
+	  <None Remove="Resources\Images\ppg_home.jpg" />
+	  <None Remove="Resources\Images\cathedral_home.jpg" />
+	  <None Remove="Resources\Images\downtown_home.jpg" />
+	  <None Remove="Resources\Images\plus.png" />
+	  <None Remove="Resources\Images\thumbs_up.png" />
+	  <None Remove="Resources\Images\person.png" />
+	  <None Remove="Resources\Images\calender.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -78,6 +93,18 @@
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\header.png" />
 	  <BundleResource Include="Resources\Images\backbutton.png" />
-	  <BundleResource Include="Resources\Images\header 7.png" />
+	  <BundleResource Include="Resources\Images\header.png" />
+	  <BundleResource Include="Resources\Images\backbutton.png" />
+	  <BundleResource Include="Resources\Images\header.png" />
+	  <BundleResource Include="Resources\Images\backbutton.png" />
+	  <BundleResource Include="Resources\Images\header.png" />
+	  <BundleResource Include="Resources\Images\pittsburgh_home.jpg" />
+	  <BundleResource Include="Resources\Images\ppg_home.jpg" />
+	  <BundleResource Include="Resources\Images\cathedral_home.jpg" />
+	  <BundleResource Include="Resources\Images\downtown_home.jpg" />
+	  <BundleResource Include="Resources\Images\plus.png" />
+	  <BundleResource Include="Resources\Images\thumbs_up.png" />
+	  <BundleResource Include="Resources\Images\person.png" />
+	  <BundleResource Include="Resources\Images\calender.png" />
 	</ItemGroup>
 </Project>
