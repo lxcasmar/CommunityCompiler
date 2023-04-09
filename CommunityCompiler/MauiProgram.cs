@@ -1,6 +1,7 @@
 ﻿using CommunityCompiler.Services;
 using CommunityCompiler.ViewModels;
 using CommunityCompiler.Views;
+using CommunityToolkit.Maui;
 
 namespace CommunityCompiler;
 
@@ -11,6 +12,7 @@ public static class MauiProgram
 		var _Builder = MauiApp.CreateBuilder();
         _Builder
             .UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

@@ -37,7 +37,7 @@
                           ItemsSource="{Binding ImageSources}"
                           HeightRequest="200"
                           HorizontalOptions="FillAndExpand"
-                          Margin="15, 30, 15, 0">
+                          Margin="15, 15, 15, 0">
                 <CarouselView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" SnapPointsType="MandatorySingle" />
                 </CarouselView.ItemsLayout>
@@ -63,7 +63,7 @@
                            ItemsSource="{Binding ImageSources}"
                            Position="{Binding Source={x:Reference carouselView}, Path=Position}"/>
 
-            <Grid Margin="15, 20, 15, 0">
+            <Grid Margin="15, 10, 15, 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
