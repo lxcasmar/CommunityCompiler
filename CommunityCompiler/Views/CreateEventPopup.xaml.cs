@@ -17,7 +17,6 @@ public partial class CreateEventPopup : Popup
 
     private async void closeBtnClicked(object sender, EventArgs e)
     {
-        await Application.Current.MainPage.DisplayAlert("Success", "Event created successfully!", "OK");
         Close();
     }
 
