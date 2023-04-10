@@ -38,7 +38,11 @@ public class EventThread extends Thread{
                 int bytesRead;
                 StringBuilder message = new StringBuilder();
                 while ((bytesRead = input.read(buffer)) != -1) {
-                    message.append(new String(buffer, 0, bytesRead));
+                    try {
+                        message.append(new String(RFC6455.decode(buffer)));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     if (input.available() == 0) {
                         break;
                     }
