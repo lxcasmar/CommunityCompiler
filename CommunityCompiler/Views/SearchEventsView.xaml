@@ -1,26 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:searchHandlers ="clr-namespace:CommunityCompiler.Search_Handlers"
              xmlns:viewModels ="clr-namespace:CommunityCompiler.ViewModels"
-             xmlns:controls="clr-namespace:CommunityCompiler.Controls"
              x:Class="CommunityCompiler.Views.SearchEventsView"
              Shell.NavBarIsVisible="False"
              Shell.BackgroundColor="White"
              Shell.TitleColor="Black">
+
     <ContentPage.Content>
         <StackLayout>
-            <controls:PageHeader />
             <Image Source="splash.svg" Margin="-120,-160,0,0" HeightRequest="400" WidthRequest="340"></Image>
             <SearchBar x:Name="Bruh" Placeholder="Search events by name, date, location, etc." 
                    Margin="25,-150,0,0" FontSize="Micro" BackgroundColor="White"
                    TextChanged="SearchBar_TextChanged">
             </SearchBar>
-            <ListView ItemsSource="{Binding Events}" IsPullToRefreshEnabled="True" x:Name="EventsListView" Margin=" 20,0,0,0" ItemSelected="OnButtonClick">
+            <ListView ItemsSource="{Binding Events}" 
+                      IsPullToRefreshEnabled="True" 
+                      x:Name="EventsListView" Margin=" 0,0,0,0" 
+                      HasUnevenRows="True"
+                      ItemSelected="OnListViewClick"
+                      SeparatorVisibility="None"
+                      BackgroundColor="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Name}" TextColor="Black">
-                        </TextCell>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Frame CornerRadius="20">
+                                    <StackLayout>
+                                        <StackLayout>
+                                            <Label Text="{Binding Name}" TextColor="Black"/>
+                                            <Label Text="{Binding Dist}" TextColor="Grey" Margin=" 270,-16,0,0"/>
+                                            <Label Text="mile(s)" TextColor="Grey" Margin="270,-3,0,0"/>
+                                            <Label Text="{Binding Location}" TextColor="Gray"  Margin="0,-22,0,0"/>
+                                            <Label Text="{Binding StartDate}" TextColor="Gray"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
