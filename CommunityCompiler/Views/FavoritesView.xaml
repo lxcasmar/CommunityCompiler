@@ -4,6 +4,7 @@
              x:Class="CommunityCompiler.Views.FavoritesView"
              xmlns:controls="clr-namespace:CommunityCompiler.Controls"
              xmlns:local="clr-namespace:CommunityCompiler.Views"
+             NavigationPage.HasNavigationBar="False"
              Title="FavoritesView">
     <Grid>
         <Grid.RowDefinitions>

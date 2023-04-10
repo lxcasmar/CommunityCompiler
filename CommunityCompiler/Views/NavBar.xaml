@@ -10,16 +10,24 @@
              SelectedTabColor="Black"
              UnselectedTabColor="DarkSlateGray"
              Title="NavBar">
-    <local:HomeView
-        Title="Home"
-        x:Name="nav_home"/>
-    <local:SearchEventsView
-        Title="Search"
-        x:Name="nav_search"/>
-    <local:FavoritesView
-        Title="Favorites"
-        x:Name="nav_favorites"/>
-    <local:SettingView
-        Title="Settings"
-        x:Name="nav_settings"/>
+    <NavigationPage Title="Home" x:Name="nav_home">
+        <x:Arguments>
+            <local:HomeView />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Search" x:Name="nav_search">
+        <x:Arguments>
+            <local:SearchEventsView />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Favorites" x:Name="nav_favorites">
+        <x:Arguments>
+            <local:FavoritesView  />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Settings" x:Name="nav_settings">
+        <x:Arguments>
+            <local:SettingView />
+        </x:Arguments>
+    </NavigationPage>
 </TabbedPage>

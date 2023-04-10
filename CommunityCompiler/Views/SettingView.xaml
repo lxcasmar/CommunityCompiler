@@ -4,6 +4,7 @@
              x:Class="CommunityCompiler.Views.SettingView"
              xmlns:controls="clr-namespace:CommunityCompiler.Controls"
              xmlns:local="clr-namespace:CommunityCompiler.Views"
+             NavigationPage.HasNavigationBar="False"
              Title="SettingView">
     <Grid>
         <Grid.RowDefinitions>

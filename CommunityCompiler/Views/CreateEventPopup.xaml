@@ -5,77 +5,79 @@
              x:Class="CommunityCompiler.Views.CreateEventPopup"
              CanBeDismissedByTappingOutsideOfPopup="False"
              Size="300,400">
-    <Grid BackgroundColor="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <ScrollView Grid.Row="0">
-            <StackLayout>
-                <ImageButton
-                    Source="close.png"
-                    Clicked="closeBtnClicked"
-                    HorizontalOptions="Start"
-                    Margin="10, 10, 0, 0"/>
-                <Label 
-                    Text="Create a new event!"
-                    TextColor="#C17A55"
-                    FontSize="Medium"
-                    FontAttributes="Bold"
-                    FontFamily="Bold"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" />
-                <Entry
-                    Placeholder="Event name"
-                    x:Name="eventName"
-                    Margin="10,0,10,0"/>
-                <Entry
-                    Placeholder="Event address"
-                    x:Name="eventAddress"
-                    Margin="10,0,10,0"/>
-                <Editor
-                    Placeholder="Event description"
-                    x:Name="eventDescription"
-                    HeightRequest="100"
-                    Margin="10,0,10,0"/>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Date:"
-                           FontFamily="Bold"
-                           FontAttributes="Bold"
-                           Margin="10,0,0,0"
-                           VerticalOptions="Center"/>
-                    <DatePicker
-                        x:Name="eventDate"
+    <ScrollView>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0">
+                <StackLayout>
+                    <ImageButton
+                        Source="close.png"
+                        Clicked="closeBtnClicked"
+                        HorizontalOptions="Start"
+                        Margin="10, 10, 0, 0"/>
+                    <Label 
+                        Text="Create a new event!"
+                        TextColor="#C17A55"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        FontFamily="Bold"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" />
+                    <Entry
+                        Placeholder="Event name"
+                        x:Name="eventName"
                         Margin="10,0,10,0"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Start Time:"
-                           FontFamily="Bold"
-                           FontAttributes="Bold"
-                           Margin="10,0,0,0"
-                           VerticalOptions="Center"/>
-                    <TimePicker
-                        x:Name="startTime"
+                    <Entry
+                        Placeholder="Event address"
+                        x:Name="eventAddress"
                         Margin="10,0,10,0"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="End Time:"
-                           FontFamily="Bold"
-                           FontAttributes="Bold"
-                           Margin="10,0,0,0"
-                           VerticalOptions="Center"/>
-                    <TimePicker
-                        x:Name="endTime"
+                    <Editor
+                        Placeholder="Event description"
+                        x:Name="eventDescription"
+                        HeightRequest="100"
                         Margin="10,0,10,0"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Date:"
+                               FontFamily="Bold"
+                               FontAttributes="Bold"
+                               Margin="10,0,0,0"
+                               VerticalOptions="Center"/>
+                        <DatePicker
+                            x:Name="eventDate"
+                            Margin="10,0,10,0"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Start Time:"
+                               FontFamily="Bold"
+                               FontAttributes="Bold"
+                               Margin="10,0,0,0"
+                               VerticalOptions="Center"/>
+                        <TimePicker
+                            x:Name="startTime"
+                            Margin="10,0,10,0"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="End Time:"
+                               FontFamily="Bold"
+                               FontAttributes="Bold"
+                               Margin="10,0,0,0"
+                               VerticalOptions="Center"/>
+                        <TimePicker
+                            x:Name="endTime"
+                            Margin="10,0,10,0"/>
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
-        </ScrollView>
-        <Button Grid.Row="1"
-                Text="Submit"
-                BackgroundColor="#C17A55"
-                HorizontalOptions="Center"
-                VerticalOptions="End"
-                Margin="0,0,0,10"
-                Clicked="submitBtnClicked"/>
-    </Grid>
+            </ScrollView>
+            <Button Grid.Row="1"
+                    Text="Submit"
+                    BackgroundColor="#C17A55"
+                    HorizontalOptions="Center"
+                    VerticalOptions="End"
+                    Margin="0,0,0,10"
+                    Clicked="submitBtnClicked"/>
+        </Grid>
+    </ScrollView>
 </mct:Popup>
