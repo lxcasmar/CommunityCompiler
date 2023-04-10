@@ -48,28 +48,27 @@ public class EventThread extends Thread{
                     }
                 }
                 
-                String response;
-                System.out.println("Entire Messsage: " + message.toString());
+                String cleanedMessage = message.toString().trim();
                 String tag = message.toString().split(";")[0];
-                //String args = message.toString().split(":")[1];
+                String response = tag + "\n";
+                System.out.println("Received message" + cleanedMessage);
                 System.out.println("Received request: " + tag);
-
                 switch (tag) {
                     case "HELLO":
                         response = "ResponseToHello";
                         break;
                     case "CRTEVT":
-                        String [] args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
+                        String [] args = cleanedMessage.split(";")[1].split(Server.PARAM_DELIMITER);
                         response = Boolean.toString(createEvent(args));
                         break;
                     case "ALLEVT":
                         response = selectAll();
                         break;
                     case "SELEVT":
-                        response = selectEvent(message.toString().split(";")[1]);
+                        response = selectEvent(cleanedMessage.split(";")[1]);
                         break;
                     case "SRCHEVT":
-                        args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
+                        args = cleanedMessage.split(";")[1].split(Server.PARAM_DELIMITER);
                         response = searchEvent(args[0], args[1]);
                         break;
                     default:
@@ -82,6 +81,8 @@ public class EventThread extends Thread{
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
+        } finally {
+            System.out.println("*** Connection from " + socket.getInetAddress() + ":" + socket.getPort() + " closed ***");
         }
     }
 
@@ -147,9 +148,9 @@ public class EventThread extends Thread{
                 pstmt.setDate(7, new java.sql.Date(parsedDate.getTime()));
             }
 
-            if (capacity != null) {
-                pstmt.setInt(7, Integer.parseInt(capacity));
-            }
+            // if (capacity != null || capacity != "") {
+            //     pstmt.setInt(7, Integer.parseInt(capacity));
+            // }
 
             pstmt.executeUpdate();
             return true;
