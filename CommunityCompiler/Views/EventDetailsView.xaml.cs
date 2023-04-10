@@ -7,7 +7,6 @@ public partial class EventDetailsView : ContentPage
 		InitializeComponent();
 		eventName.Text = name;
 		Location.Text = "City: " + location;
-		Location.Text = "City: " + location;
 		Distance.Text = "Distance: " + dist.ToString();
 	}
 }
