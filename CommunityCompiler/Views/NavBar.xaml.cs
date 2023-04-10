@@ -1,11 +1,13 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Platform;
+using CommunityCompiler.Services;
 
 namespace CommunityCompiler.Views;
 
 public partial class NavBar : TabbedPage
 {
-    public NavBar()
+
+    public NavBar(EventDataService eventDataService)
     {
         InitializeComponent();
 
@@ -33,6 +35,8 @@ public partial class NavBar : TabbedPage
             CurrentPage = this.Children[3];
 
         }));
+
+        // eventDataService.Connect("", );
     }
 
     private void CurrentPageHasChanged(object sender, EventArgs e)

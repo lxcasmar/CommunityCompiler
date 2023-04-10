@@ -1,4 +1,5 @@
 using CommunityCompiler.Views;
+using CommunityCompiler.Services;
 
 namespace CommunityCompiler;
 
@@ -8,6 +9,6 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new NavBar();
+		MainPage = new NavBar(ServiceAid.GetService<EventDataService>());
     }
 }

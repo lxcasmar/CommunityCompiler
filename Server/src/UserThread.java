@@ -50,7 +50,7 @@ public class UserThread extends Thread{
                         break;
                     }
                 }
-                String cleanedMessage = message.toString().strip();
+                String cleanedMessage = message.toString().trim();
                 String tag = message.toString().split(";")[0];
                 String response = tag + "\n";
                 System.out.println("Received request: " + tag);

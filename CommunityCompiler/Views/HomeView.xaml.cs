@@ -1,6 +1,7 @@
 using AndroidX.Lifecycle;
 using CommunityCompiler.ViewModels;
 using CommunityToolkit.Maui.Views;
+using CommunityCompiler.Services;
 
 namespace CommunityCompiler.Views;
 
@@ -17,7 +18,7 @@ public partial class HomeView : ContentPage
 
     private async void addANewEventBtnClicked(object sender, EventArgs e)
     {
-        this.ShowPopup(new CreateEventPopup());
+        this.ShowPopup(new CreateEventPopup(ServiceAid.GetService<EventDataService>()));
     }
 
     private async void findAnEventBtnClicked(object sender, EventArgs e)
