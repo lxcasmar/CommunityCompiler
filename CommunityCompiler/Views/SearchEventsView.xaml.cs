@@ -1,4 +1,4 @@
-﻿using CommunityCompiler.ViewModels;
+using CommunityCompiler.ViewModels;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Tracing;
 
@@ -27,9 +27,10 @@ namespace CommunityCompiler.Views
             EventsListView.EndRefresh();
         }
 
-        private async void OnButtonClick(object sender, EventArgs e)
+        private async void OnListViewClick(object sender, SelectedItemChangedEventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(EventDetailsView));
+            var events = e.SelectedItem as Event;
+            await Navigation.PushAsync(new EventDetailsView(events.Name, events.Location, events.StartDate, events.EndDate, events.StartTime, events.EndTime, events.Dist));
         }
 
 
