@@ -1,3 +1,4 @@
+using CommunityCompiler.Services;
 using CommunityCompiler.ViewModels;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Tracing;
@@ -7,17 +8,18 @@ namespace CommunityCompiler.Views
 
     public partial class SearchEventsView : ContentPage
     {
+        SearchEventsViewModel _ViewModel;
 
         public SearchEventsView()
         {
 
             InitializeComponent();
-            BindingContext = new SearchEventsViewModel();
+            BindingContext = _ViewModel = ServiceAid.GetService<SearchEventsViewModel>();
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var _container = BindingContext as SearchEventsViewModel;
+            var _container = _ViewModel;
             EventsListView.BeginRefresh();
 
             if (string.IsNullOrWhiteSpace(e.NewTextValue))

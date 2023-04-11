@@ -14,7 +14,7 @@ public partial class HomeView : ContentPage
 	{
 		InitializeComponent();
 
-        _ViewModel = new HomeViewModel();
+        _ViewModel = ServiceAid.GetService<HomeViewModel>();
         BindingContext = _ViewModel;
     }
 
