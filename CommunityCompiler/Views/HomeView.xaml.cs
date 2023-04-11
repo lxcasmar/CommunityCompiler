@@ -1,4 +1,6 @@
+#if ANDROID
 using AndroidX.Lifecycle;
+#endif
 using CommunityCompiler.ViewModels;
 using CommunityToolkit.Maui.Views;
 using CommunityCompiler.Services;

@@ -83,6 +83,14 @@
 	  <None Remove="Resources\Images\person.png" />
 	  <None Remove="Resources\Images\calender.png" />
 	  <None Remove="Resources\Images\close.png" />
+	  <None Remove="Resources\Images\unselected_settings_s.png" />
+	  <None Remove="Resources\Images\unselected_favorites_s.png" />
+	  <None Remove="Resources\Images\unselected_home_s.png" />
+	  <None Remove="Resources\Images\unselected_search_s.png" />
+	  <None Remove="Resources\Images\selected_settings_s.png" />
+	  <None Remove="Resources\Images\selected_search_s.png" />
+	  <None Remove="Resources\Images\selected_favorites_s.png" />
+	  <None Remove="Resources\Images\selected_home_s.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -93,21 +101,29 @@
 	  <Folder Include="Controls\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <BundleResource Include="Resources\Images\header.png" />
-	  <BundleResource Include="Resources\Images\backbutton.png" />
-	  <BundleResource Include="Resources\Images\header.png" />
-	  <BundleResource Include="Resources\Images\backbutton.png" />
-	  <BundleResource Include="Resources\Images\header.png" />
-	  <BundleResource Include="Resources\Images\backbutton.png" />
-	  <BundleResource Include="Resources\Images\header.png" />
-	  <BundleResource Include="Resources\Images\pittsburgh_home.jpg" />
-	  <BundleResource Include="Resources\Images\ppg_home.jpg" />
-	  <BundleResource Include="Resources\Images\cathedral_home.jpg" />
-	  <BundleResource Include="Resources\Images\downtown_home.jpg" />
-	  <BundleResource Include="Resources\Images\plus.png" />
-	  <BundleResource Include="Resources\Images\thumbs_up.png" />
-	  <BundleResource Include="Resources\Images\person.png" />
-	  <BundleResource Include="Resources\Images\calender.png" />
-	  <BundleResource Include="Resources\Images\close.png" />
+	  <MauiImage Include="Resources\Images\header.png" />
+	  <MauiImage Include="Resources\Images\backbutton.png" />
+	  <MauiImage Include="Resources\Images\header.png" />
+	  <MauiImage Include="Resources\Images\backbutton.png" />
+	  <MauiImage Include="Resources\Images\header.png" />
+	  <MauiImage Include="Resources\Images\backbutton.png" />
+	  <MauiImage Include="Resources\Images\header.png" />
+	  <MauiImage Include="Resources\Images\pittsburgh_home.jpg" />
+	  <MauiImage Include="Resources\Images\ppg_home.jpg" />
+	  <MauiImage Include="Resources\Images\cathedral_home.jpg" />
+	  <MauiImage Include="Resources\Images\downtown_home.jpg" />
+	  <MauiImage Include="Resources\Images\plus.png" />
+	  <MauiImage Include="Resources\Images\thumbs_up.png" />
+	  <MauiImage Include="Resources\Images\person.png" />
+	  <MauiImage Include="Resources\Images\calender.png" />
+	  <MauiImage Include="Resources\Images\close.png" />
+	  <MauiImage Include="Resources\Images\unselected_settings_s.png" />
+	  <MauiImage Include="Resources\Images\unselected_favorites_s.png" />
+	  <MauiImage Include="Resources\Images\unselected_home_s.png" />
+	  <MauiImage Include="Resources\Images\unselected_search_s.png" />
+	  <MauiImage Include="Resources\Images\selected_settings_s.png" />
+	  <MauiImage Include="Resources\Images\selected_search_s.png" />
+	  <MauiImage Include="Resources\Images\selected_favorites_s.png" />
+	  <MauiImage Include="Resources\Images\selected_home_s.png" />
 	</ItemGroup>
 </Project>

@@ -4,139 +4,141 @@
              x:Class="CommunityCompiler.Views.HomeView"
              xmlns:controls="clr-namespace:CommunityCompiler.Controls"
              xmlns:local="clr-namespace:CommunityCompiler.Views"
-             NavigationPage.HasNavigationBar="False"
              Title="HomeView">
-    <ScrollView>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <StackLayout Grid.ColumnSpan="3">
-                <controls:PageHeader />
-                <Label FontSize="Title"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Start"
-                       Margin="15, 0, 0, 0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Discover"
-                                  TextColor="Black"
-                                  FontAttributes="Bold"
-                                  FontSize="30"/>
-                            <Span Text=" "
-                                  FontSize="30"/>
-                            <Span Text="Pittsburgh"
-                                  TextColor="#84BEDC"
-                                  FontAttributes="Bold"
-                                  FontSize="30"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <CarouselView x:Name="carouselView"
-                              ItemsSource="{Binding ImageSources}"
-                              HeightRequest="200"
-                              HorizontalOptions="FillAndExpand"
-                              Margin="15, 15, 15, 0">
-                    <CarouselView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" SnapPointsType="MandatorySingle" />
-                    </CarouselView.ItemsLayout>
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame CornerRadius="10"
-                                   Padding="0">
-                                <Image Source="{Binding}"
-                                       Aspect="AspectFill"
-                                       HorizontalOptions="FillAndExpand"
-                                       HeightRequest="200" />
-                            </Frame>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-                <IndicatorView x:Name="indicatorView"
-                               IndicatorSize="5"
-                               IndicatorsShape="Circle"
-                               IndicatorColor="LightGray"
-                               SelectedIndicatorColor="Black"
-                               HorizontalOptions="Center"
-                               Margin="0, 10"
-                               ItemsSource="{Binding ImageSources}"
-                               Position="{Binding Source={x:Reference carouselView}, Path=Position}"/>
 
-                <Grid Margin="15, 10, 15, 0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackLayout Grid.ColumnSpan="3">
+            <controls:PageHeader />
+            <Label FontSize="Title"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   Margin="15, 0, 0, 0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Discover"
+                              TextColor="Black"
+                              FontAttributes="Bold"
+                              FontSize="30"/>
+                        <Span Text=" "
+                              FontSize="30"/>
+                        <Span Text="Pittsburgh"
+                              TextColor="#84BEDC"
+                              FontAttributes="Bold"
+                              FontSize="30"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <CarouselView x:Name="carouselView"
+                          ItemsSource="{Binding ImageSources}"
+                          HeightRequest="200"
+                          HorizontalOptions="FillAndExpand"
+                          Margin="15, 15, 15, 0">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" SnapPointsType="MandatorySingle" />
+                </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
+                               Padding="0">
+                            <Image Source="{Binding}"
+                                   Aspect="AspectFill"
+                                   HorizontalOptions="FillAndExpand"
+                                   HeightRequest="200" />
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorView"
+                           IndicatorSize="5"
+                           IndicatorsShape="Circle"
+                           IndicatorColor="LightGray"
+                           SelectedIndicatorColor="Black"
+                           HorizontalOptions="Center"
+                           Margin="0, 10"
+                           ItemsSource="{Binding ImageSources}"
+                           Position="{Binding Source={x:Reference carouselView}, Path=Position}"/>
 
-                    <Button x:Name="addANewEvent"
-                            Clicked="addANewEventBtnClicked"
-                            ContentLayout="Top,0"
-                            Text="Add an Event"
-                            ImageSource="plus.png"
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            FontAttributes="Bold"
-                            FontFamily="Bold"
-                            FontSize="Medium"
-                            HeightRequest="120"
-                            BackgroundColor="#C1AB96"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Center"
-                            Margin="0, 0, 5, 5">
-                    </Button>
-                    <Button x:Name="findAnEvent"
-                            Clicked="findAnEventBtnClicked"
-                            ContentLayout="Top,0"
-                            Text="Find an Event"
-                            ImageSource="calender.png"
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            FontAttributes="Bold"
-                            FontFamily="Bold"
-                            FontSize="Medium"
-                            HeightRequest="120"
-                            BackgroundColor="#849974"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Center"
-                            Margin="5, 0, 0, 5" />
-                    <Button x:Name="goToFavorites"
-                            Clicked="goToFavoritesBtnClicked"
-                            ContentLayout="Top,0"
-                            Text="Go to Favorites"
-                            ImageSource="thumbs_up.png"
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            FontAttributes="Bold"
-                            FontFamily="Bold"
-                            FontSize="Medium"
-                            HeightRequest="120"
-                            BackgroundColor="#d8cea1"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Center"
-                            Margin="0, 5, 5, 0" />
-                    <Button x:Name="profileSettings"
-                            Clicked="profileSettingsBtnClicked"
-                            ContentLayout="Top,0"
-                            Text="Profile Settings"
-                            ImageSource="person.png"
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            FontAttributes="Bold"
-                            FontFamily="Bold"
-                            FontSize="Medium"
-                            HeightRequest="120"
-                            BackgroundColor="#a5b6c4"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Center"
-                            Margin="5, 5, 0, 0" />
-                </Grid>
-            </StackLayout>
-        </Grid>
-    </ScrollView>
+            <Grid Margin="15, 10, 15, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="addANewEvent"
+                        Clicked="addANewEventBtnClicked"
+                        ContentLayout="Top,0"
+                        Text="Add a New Event"
+                        ImageSource="plus.png"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontFamily="Bold"
+                        FontSize="Medium"
+                        HeightRequest="120"
+                        BackgroundColor="#C1AB96"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        Padding="{OnPlatform 0, Android=0, iOS='0,20,0,0'}"
+                        Margin="0, 0, 5, 5">
+                </Button>
+                <Button x:Name="findAnEvent"
+                        Clicked="findAnEventBtnClicked"
+                        ContentLayout="Top,0"
+                        Text="Find an Event"
+                        ImageSource="calender.png"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontFamily="Bold"
+                        FontSize="Medium"
+                        HeightRequest="120"
+                        BackgroundColor="#849974"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        Padding="{OnPlatform 0, Android=0, iOS='0,20,0,0'}"
+                        Margin="5, 0, 0, 5" />
+                <Button x:Name="goToFavorites"
+                        Clicked="goToFavoritesBtnClicked"
+                        ContentLayout="Top,0"
+                        Text="Go to Favorites"
+                        ImageSource="thumbs_up.png"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontFamily="Bold"
+                        FontSize="Medium"
+                        HeightRequest="120"
+                        BackgroundColor="#d8cea1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        Padding="{OnPlatform 0, Android=0, iOS='0,20,0,0'}"
+                        Margin="0, 5, 5, 0" />
+                <Button x:Name="profileSettings"
+                        Clicked="profileSettingsBtnClicked"
+                        ContentLayout="Top,0"
+                        Text="Profile Settings"
+                        ImageSource="person.png"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontFamily="Bold"
+                        FontSize="Medium"
+                        HeightRequest="120"
+                        BackgroundColor="#a5b6c4"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        Padding="{OnPlatform 0, Android=0, iOS='0,20,0,0'}"
+                        Margin="5, 5, 0, 0" />
+            </Grid>
+        </StackLayout>
+    </Grid>
 </ContentPage>
