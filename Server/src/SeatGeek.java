@@ -1,26 +1,51 @@
-// import okhttp3.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-// public class SeatGeek {
-//     private static final String BASE_URL = "https://api.seatgeek.com/2/";
-//     private final OkHttpClient client = new OkHttpClient();
+public class SeatGeek {
+    enum requests {
+        GET
+    }
 
-//     public enum endpoints {
-//         events,
-//         performers
-//     }
-//     public String get(endpoints endpoint) {
-//         String url = BASE_URL
-//                    + endpoint.toString()
-//                    + "?client_id=" + ConfigUtils.getConfig("seat_geek_client_id")
-//                    + "&client_secret=" + ConfigUtils.getConfig("seat_geek_api_key");
-//         Request request = new Request.Builder()
-//             .url(url)
-//             .build();
-//         try (Response response = client.newCall(request).execute()) {
-//             return response.body().string();
-//         } catch (Exception e) {
-//             e.printStackTrace();
-//         }
-//         return null;
-//     }
-// }
+    enum endpoints {
+        events, 
+        performers
+    }
+
+    private static final String BASE_URL = "https://api.seatgeek.com/2/";
+
+    String get(String apiurl) {
+        try {
+            URL url = new URL(apiurl);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod(requests.GET.toString());
+
+            int status = con.getResponseCode();
+            System.out.println("Response code: "+ status);
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            return response.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "ERROR";
+    }
+
+    public static void main(String[] args) {
+        java.security.Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+        SeatGeek sg = new SeatGeek();
+        String url = BASE_URL + 
+                     endpoints.events.toString() +
+                     "?client_id=" + ConfigUtils.getConfig("seat_geek_client_id")+
+                     "&client_secret=" + ConfigUtils.getConfig("seat_geek_api_key");
+        String response = sg.get(url);
+        System.out.println(response);
+    }
+}

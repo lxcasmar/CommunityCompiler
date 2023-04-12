@@ -62,7 +62,7 @@ namespace CommunityCompiler.Services
 
 		public bool Connected()
 		{
-			return Sock.IsAlive;
+			return true;
 		}
 	}
 }
