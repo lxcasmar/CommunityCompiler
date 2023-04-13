@@ -3,6 +3,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONObject;
+
 public class SeatGeek {
     enum requests {
         GET
@@ -31,7 +33,9 @@ public class SeatGeek {
                 response.append(inputLine);
             }
             in.close();
-            return response.toString();
+
+            JSONObject jsonResponse = new JSONObject(response.toString());
+            return jsonResponse.toString(4);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,6 +49,7 @@ public class SeatGeek {
                      endpoints.events.toString() +
                      "?client_id=" + ConfigUtils.getConfig("seat_geek_client_id")+
                      "&client_secret=" + ConfigUtils.getConfig("seat_geek_api_key");
+        System.out.println("URL: " + url);                     
         String response = sg.get(url);
         System.out.println(response);
     }

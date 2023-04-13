@@ -10,6 +10,7 @@ public class KeyStoreGenerator {
     private static final String KEYSTORE_TYPE = "JCEKS";
     private static final String KEYSTORE_FILENAME = "keystore.jceks";
     private static Scanner sc = new Scanner(System.in);
+    private static final int TIEMOUT = 300;
 
     public static void generateKeyStore() {
         if (new File(KEYSTORE_FILENAME).exists()) {
@@ -32,7 +33,7 @@ public class KeyStoreGenerator {
     }
 
     public static SecretKey recoverKey(String alias) {
-        // can modify this if need to store/recover more than one key
+        // it would be nice if didnt ask for keystore password every time
         System.out.println("Enter keystore password: ");
         char[] KEYSTORE_PASSWORD = sc.nextLine().toCharArray();
         System.out.println("Enter key password for " + alias + ": ");

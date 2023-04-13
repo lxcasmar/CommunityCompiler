@@ -14,7 +14,7 @@ public class ConfigUtils {
             byte[] iv = ByteUtils.subarray(contents, 0, 16);
             byte[] ciphertext = ByteUtils.subarray(contents, 16, contents.length);
             byte[] plaintext = AES.decrypt(ciphertext, iv, configKey);
-            return new String(plaintext);
+            return new String(plaintext).trim();
         } catch (IOException e) {
             e.printStackTrace();   
         }
