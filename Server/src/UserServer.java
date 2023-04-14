@@ -55,6 +55,7 @@ public class UserServer extends Server {
             + "	email text NOT NULL,\n"
             + "	password text NOT NULL,\n"
             + " salt text NOT NULL,\n"
+            + " favorites text,\n"
             + "	phone text NOT NULL,\n"
             + " is_admin integer NOT NULL\n"
             + ");";

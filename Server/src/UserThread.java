@@ -72,6 +72,17 @@ public class UserThread extends Thread{
                         args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
                         response = auth(args[0], args[1]);
                         break;
+                    case "ALLFAV":
+                        response = getFavorites(cleanedMessage.split(";")[1]);
+                        break;
+                    case "ADDFAV":
+                        args = cleanedMessage.split(";")[1].split(Server.PARAM_DELIMITER);
+                        response = Boolean.toString(addFavorite(args[0], args[1]));
+                        break;
+                    case "DELFAV":
+                        args = cleanedMessage.split(";")[1].split(Server.PARAM_DELIMITER);
+                        response = Boolean.toString(deleteFavorite(args[0], args[1]));
+                        break;
                     default:
                         response = "Unknown request received";
                         break;
@@ -194,5 +205,72 @@ public class UserThread extends Thread{
             System.out.println(e.getMessage());
         }
         return null;        
+    }
+
+    private String getFavorites(String uuid) {
+        String sql = "SELECT favorites FROM users WHERE uuid = ?";
+        try (Connection conn = DriverManager.getConnection(Server.dbUrl);
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, uuid);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("favorites");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private boolean addFavorite(String uuid, String favorite) {
+        String sql = "UPDATE users SET favorites = ? WHERE uuid = ?";
+        try (Connection conn = DriverManager.getConnection(Server.dbUrl);
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            String favorites = getFavorites(uuid);
+            if (favorites == null) {
+                favorites = favorite;
+            } else {
+                favorites += "," + favorite;
+            }
+            pstmt.setString(1, favorites);
+            pstmt.setString(2, uuid);
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    private boolean deleteFavorite(String uuid, String favorite) {
+        String sql = "UPDATE users SET favorites = ? WHERE uuid = ?";
+        try (Connection conn = DriverManager.getConnection(Server.dbUrl);
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            String favorites = getFavorites(uuid);
+            if (favorites == null) {
+                return false;
+            } else {
+                String[] favs = favorites.split(",");
+                favorites = "";
+                for (String fav : favs) {
+                    if (!fav.equals(favorite)) {
+                        favorites += fav + ",";
+                    }
+                }
+                if (favorites.length() > 0) {
+                    favorites = favorites.substring(0, favorites.length() - 1);
+                }
+            }
+            pstmt.setString(1, favorites);
+            pstmt.setString(2, uuid);
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 }

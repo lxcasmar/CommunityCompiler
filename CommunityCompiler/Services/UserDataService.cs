@@ -1,5 +1,6 @@
 ﻿using System;
 using WebSocketSharp;
+using Xamarin.Google.Crypto.Tink.Signature;
 
 namespace CommunityCompiler.Services
 {
@@ -87,16 +88,59 @@ namespace CommunityCompiler.Services
 			return response;
 		}
 
+		/// <summary>
+		/// Gets the favorited events by a particular user
+		/// </summary>
+		/// <param name="uuid">The user's UUID</param>
+		/// <returns>UUIDs of favorited events</returns>
+		public async Task<string[]> GetAllFavorites(String uuid)
+		{
+			Send("ALLFAV;" + uuid);
+			string response = await stcs.Task;
+			string[] fin = response.Split(',');
+			return fin;
+		}
+
+		/// <summary>
+		/// Adds an event to a user's favorited events
+		/// </summary>
+		/// <param name="userUuid"></param>
+		/// <param name="eventUuid">UUID of event to be favorited</param>
+		/// <returns>success/failure</returns>
+		public async Task<bool> AddFavorite(string userUuid, string eventUuid)
+		{
+			Send("ADDFAV;"
+				+ userUuid + _ParamDelimiter
+				+ eventUuid);
+			bool response = await btcs.Task;
+			return response;
+		}
+
+		/// <summary>
+		/// Deletes an event from the user's favorited events
+		/// </summary>
+		/// <param name="userUuid"></param>
+		/// <param name="eventUuid"></param>
+		/// <returns></returns>
+		public async Task<bool> DelFavorite(string userUuid, string eventUuid)
+		{
+			Send("DELFAV;"
+				+ userUuid + _ParamDelimiter
+				+ eventUuid);
+			bool response = await btcs.Task;
+			return response;
+		}
+
         public override void OnMessage(object sender, MessageEventArgs e)
         {
             base.OnMessage(sender, e);
 			string tag = e.Data.Split(Environment.NewLine)[0];
 			switch (tag)
 			{
-				case "HELLO" or "ALLUSR" or "SELUSR" or "AUTH":
+				case "HELLO" or "ALLUSR" or "SELUSR" or "AUTH" or "ALLFAV":
 					stcs.SetResult(e.Data);
 					break;
-				case "CRTUSR":
+				case "CRTUSR" or "ADDFAV" or "DELFAV":
 					btcs.SetResult(Boolean.Parse(e.Data));
 					break;
 			}

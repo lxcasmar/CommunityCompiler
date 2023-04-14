@@ -14,7 +14,8 @@ public partial class LoginView : ContentPage
 
     private async void homeBtn_clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new NavBar(ServiceAid.GetService<EventDataService>()));
+        await Navigation.PushAsync(new NavBar(ServiceAid.GetService<EventDataService>(),
+                                              ServiceAid.GetService<UserDataService>()));
     }
 
     private async void registerBtn_clicked(object sender, EventArgs e)
