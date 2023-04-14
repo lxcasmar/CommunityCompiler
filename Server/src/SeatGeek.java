@@ -3,6 +3,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class SeatGeek {
@@ -12,12 +13,13 @@ public class SeatGeek {
 
     enum endpoints {
         events, 
-        performers
+        performers,
+        venues
     }
 
     private static final String BASE_URL = "https://api.seatgeek.com/2/";
 
-    String get(String apiurl) {
+    JSONObject get(String apiurl) {
         try {
             URL url = new URL(apiurl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -35,22 +37,46 @@ public class SeatGeek {
             in.close();
 
             JSONObject jsonResponse = new JSONObject(response.toString());
-            return jsonResponse.toString(4);
+            //return jsonResponse.toString(4);
+            return jsonResponse;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "ERROR";
+        return null;
+    }
+
+    // TODO: need to create a user with UUID 0 for API
+    void populateEvents() {
+        String url = BASE_URL + 
+                     endpoints.events.toString() +
+                     "?client_id=" + ConfigUtils.getConfig("seat_geek_client_id")+
+                     "&client_secret=" + ConfigUtils.getConfig("seat_geek_api_key");
+        JSONObject response = get(url);
+        JSONArray eventsArray = response.getJSONArray("events");
+        System.out.println("Number of events: " + eventsArray.length());
+        for (int i = 0; i < Math.min(eventsArray.length(),50); i++) {
+            JSONObject event = eventsArray.getJSONObject(i);
+            String title = event.getString("title");
+            JSONObject venue = event.getJSONObject("venue");
+            String location = venue.getString("extended_address") + ", " + venue.getString("display_location");
+            String eventUrl = event.getString("url");
+            String description = event.getString("description");
+            String type = event.getString("type");
+            JSONObject performer = event.getJSONArray("performers").getJSONObject(0);
+            String image = performer.getString("image");
+            String datetime = event.getString("datetime_utc");
+            String endDatetime = null;
+            if (!event.isNull("enddatetime_utc")) {
+                endDatetime = event.getString("enddatetime_utc");
+            }
+            String owner = "da1b490b-1225-4e25-9627-eeb0e5d792cd";
+            EventThread.seatGeekCrtEvt(new String [] {title, location, eventUrl, description, type, image, datetime, endDatetime, owner});
+        }
     }
 
     public static void main(String[] args) {
         java.security.Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         SeatGeek sg = new SeatGeek();
-        String url = BASE_URL + 
-                     endpoints.events.toString() +
-                     "?client_id=" + ConfigUtils.getConfig("seat_geek_client_id")+
-                     "&client_secret=" + ConfigUtils.getConfig("seat_geek_api_key");
-        System.out.println("URL: " + url);                     
-        String response = sg.get(url);
-        System.out.println(response);
+        sg.populateEvents();
     }
 }

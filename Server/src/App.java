@@ -21,7 +21,7 @@ public class App {
                              "- SELUSR;<UUID>\t\t Gets user information from UUID\n" +
                              "- SELEVT;<UUID>\t\t Gets event information from UUID\n" +
                              "- CRTUSR;<username>##<password>##<email>##<phoneNumber>##<is_admin>\t Creates a new user\n" +
-                             "- CRTEVT;<owneruuid>##<name>##<description>##<location>##<start>##[<end>]##[<capacity>]    Creates a new event. Time in YYYY-MM-DD HH:MM:SS\n" +
+                             "- CRTEVT;<owneruuid>##<name>##<description>##<location>##<start>##[<end>]    Creates a new event. Time in YYYY-MM-DD HH:MM:SS\n" +
                              "- SRCHEVT;<column>##<value>\t\t Searches for an event based on certain parameters\n" +
                              "- ALLUSR\t\t\t returns list of all users in the database\n" +
                              "- ALLEVT\t\t\t returns list of all events in the database";
@@ -144,11 +144,11 @@ public class App {
                         String [] params = input.split(";")[1].split(Server.PARAM_DELIMITER);
                         Arrays.stream(params).forEach(x -> System.out.println(x));
                         
-                        if (!crtevt(params)) {
-                            System.err.println("Event creation failed");
-                        } else {
-                            System.out.println("Event creation successful");
-                        }
+                        // if (!crtevt(params)) {
+                        //     System.err.println("Event creation failed");
+                        // } else {
+                        //     System.out.println("Event creation successful");
+                        // }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -179,22 +179,22 @@ public class App {
         }
     }
 
-    /**
-     * Helper method for creating an event... needed because of optional parameters
-     * @param args
-     * @return
-     */
-    private static boolean crtevt(String [] args) {
-        switch (args.length) {
-            case 5:
-                return ec.createEvent(args[0], args[1], args[2], args[3], args[4], null, null);
-            case 6:
-                return ec.createEvent(args[0], args[1], args[2], args[3], args[4], args[5], null);
-            case 7:
-                return ec.createEvent(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
-            default:
-                System.err.println("Invalid number of arguments");
-                return false;
-        }
-    }
+    // /**
+    //  * Helper method for creating an event... needed because of optional parameters
+    //  * @param args
+    //  * @return
+    //  */
+    // private static boolean crtevt(String [] args) {
+    //     switch (args.length) {
+    //         case 5:
+    //             return ec.createEvent(args[0], args[1], args[2], args[3], args[4], null, null);
+    //         case 6:
+    //             return ec.createEvent(args[0], args[1], args[2], args[3], args[4], args[5], null);
+    //         case 7:
+    //             return ec.createEvent(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+    //         default:
+    //             System.err.println("Invalid number of arguments");
+    //             return false;
+    //     }
+    // }
 }

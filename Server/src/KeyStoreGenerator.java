@@ -10,7 +10,6 @@ public class KeyStoreGenerator {
     private static final String KEYSTORE_TYPE = "JCEKS";
     private static final String KEYSTORE_FILENAME = "keystore.jceks";
     private static Scanner sc = new Scanner(System.in);
-    private static final int TIEMOUT = 300;
 
     public static void generateKeyStore() {
         if (new File(KEYSTORE_FILENAME).exists()) {

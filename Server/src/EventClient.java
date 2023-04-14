@@ -23,19 +23,15 @@ public class EventClient extends Client {
         }
     }
 
-    public boolean createEvent(String owneruuid, String name, String description, String location, String startDate, String endDate, String capacity) {
+    public boolean createEvent(String owneruuid, String name, String description, String location, String startDate, String endDate) {
         String message = "CRTEVT;" + owneruuid + Server.PARAM_DELIMITER
                                    + name + Server.PARAM_DELIMITER 
                                    + description + Server.PARAM_DELIMITER 
                                    + location + Server.PARAM_DELIMITER 
                                    + startDate;
         if (endDate != null) {
-            message += Server.PARAM_DELIMITER + "A" + endDate;
+            message += Server.PARAM_DELIMITER  + endDate;
         }
-        if (capacity != null) {
-            message += Server.PARAM_DELIMITER + "B" + capacity;
-        }
-
         try {
             System.out.println("Sending message: " + message);
             output.write(message.getBytes());

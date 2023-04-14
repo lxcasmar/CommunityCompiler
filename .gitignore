@@ -11,3 +11,4 @@ obj
 packages
 .vs/
 Server/bin/
+Server/community_compiler_aws_vps.pem

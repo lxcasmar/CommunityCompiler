@@ -44,6 +44,17 @@ namespace CommunityCompiler.Services
 			Console.WriteLine("Successfully Connected");
 		}
 
+		public void Connect(string url)
+		{
+            Console.WriteLine("Connecting to " + url);
+            Sock = new WebSocket($"ws://{url}");
+
+            Sock.OnMessage += OnMessage;
+
+            Sock.Connect();
+            Console.WriteLine("Successfully Connected");
+        }
+
 		public virtual void OnMessage(object sender, MessageEventArgs e) 
 		{
 			Console.WriteLine("ReceivedMessage:");

@@ -6,8 +6,9 @@ namespace CommunityCompiler.Views;
 
 public partial class NavBar : TabbedPage
 {
+    UserDataService _UserDataService;
 
-    public NavBar(EventDataService eventDataService)
+    public NavBar(EventDataService eventDataService, UserDataService userDataService)
     {
         InitializeComponent();
 #if ANDROID || WINDOWS10_0_17763_0_OR_GREATER
@@ -43,10 +44,12 @@ public partial class NavBar : TabbedPage
 
         }));
 
-        // eventDataService.Connect("", );
+        eventDataService.Connect("ec2-3-16-160-137.us-east-2.compute.amazonaws.com");
+        _UserDataService = userDataService;
+        _UserDataService.Connect("ec2-3-14-68-89.us-east-2.compute.amazonaws.com");
     }
 
-    private void CurrentPageHasChanged(object sender, EventArgs e)
+    private async void CurrentPageHasChanged(object sender, EventArgs e)
     {
         var tabbedPage = (TabbedPage)sender;
         Title = tabbedPage.CurrentPage.Title;

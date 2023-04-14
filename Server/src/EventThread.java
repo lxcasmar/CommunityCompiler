@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -86,22 +88,61 @@ public class EventThread extends Thread{
         }
     }
 
+    public static boolean seatGeekCrtEvt(String[] args) {
+        String sql = "INSERT INTO events (uuid, owner, name, description, location, startDate, endDate, url, type, image) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String uuid = UUID.randomUUID().toString();
+        String title = args[0];
+        String location = args[1];
+        String eventUrl = args[2];
+        String description = args[3];
+        String type = args[4];
+        String image = args[5];
+        String datetime = args[6];
+        String endDatetime = args[7];
+        String owneruuid = args[8];
+        try (Connection conn = DriverManager.getConnection(Server.dbUrl)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, uuid);
+            pstmt.setString(2, owneruuid);
+            pstmt.setString(3, title);
+            pstmt.setString(4, description);
+            pstmt.setString(5, location);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+            LocalDateTime utcDateTime = LocalDateTime.parse(datetime, formatter);
+            java.sql.Date date = java.sql.Date.valueOf(utcDateTime.toLocalDate());
+
+            pstmt.setDate(6, date);
+
+            if (endDatetime != null) {
+                utcDateTime = LocalDateTime.parse(endDatetime, formatter);
+                date = java.sql.Date.valueOf(utcDateTime.toLocalDate());
+                pstmt.setDate(7, date);
+            } else {
+                pstmt.setDate(7, null);
+            }
+
+            pstmt.setString(8,eventUrl);
+            pstmt.setString(9,type);
+            pstmt.setString(10, image);
+            pstmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return true;
+    }
+
+    // TODO: add way to insert image... maybe by uploading to server and storing path in db?
     private boolean createEvent(String [] args) {
-        String endDate = null, capacity = null, owneruuid, name, description, location, startDate, sql = null;
+        String endDate = null, owneruuid, name, description, location, startDate, sql = null;
         System.out.println("args length: " + args.length);
         switch(args.length) {
-            case 7:
-                endDate = args[5].substring(1);
-                capacity = args[6].substring(1);
-                sql = "INSERT INTO events (uuid, owner, name, description, location, startDate, endDate, capacity) VALUES (?,?,?,?,?,?,?,?)";
             case 6:
-                if(args[6].charAt(0) == 'A') {
-                    endDate = args[6].substring(1);
-                    sql = "INSERT INTO events (uuid, owner, name, description, location, startDate, endDate) VALUES (?,?,?,?,?,?,?)";
-                } else {
-                    capacity = args[6].substring(1);
-                    sql = "INSERT INTO events (uuid, owner, name, description, location, startDate, capacity) VALUES (?,?,?,?,?,?,?)";
-                }
+                endDate = args[5];
+                sql = "INSERT INTO events (uuid, owner, name, description, location, startDate, endDate) VALUES (?,?,?,?,?,?,?)";
             case 5:
                 if (sql == null) {
                     sql = "INSERT INTO events (uuid, owner, name, description, location, startDate) VALUES (?,?,?,?,?,?)";
@@ -148,10 +189,6 @@ public class EventThread extends Thread{
                 pstmt.setDate(7, new java.sql.Date(parsedDate.getTime()));
             }
 
-            // if (capacity != null || capacity != "") {
-            //     pstmt.setInt(7, Integer.parseInt(capacity));
-            // }
-
             pstmt.executeUpdate();
             return true;
 
@@ -178,7 +215,9 @@ public class EventThread extends Thread{
                 row.put("location", rs.getString("location"));
                 row.put("startDate", rs.getString("startDate"));
                 row.put("endDate", rs.getString("endDate"));
-                row.put("capacity", rs.getString("capacity"));
+                row.put("image", rs.getString("image"));
+                row.put("url", rs.getString("url"));
+                row.put("type", rs.getString("type"));
                 rows.put(row);
             }
 
@@ -208,7 +247,8 @@ public class EventThread extends Thread{
                 row.put("location", rs.getString("location"));
                 row.put("startDate", rs.getString("startDate"));
                 row.put("endDate", rs.getString("endDate"));
-                row.put("capacity", rs.getString("capacity"));
+                row.put("image", rs.getString("image"));
+                row.put("url", rs.getString("url"));
                 rows.put(row);
             }
 
@@ -237,7 +277,8 @@ public class EventThread extends Thread{
                 row.put("location", rs.getString("location"));
                 row.put("startDate", rs.getString("startDate"));
                 row.put("endDate", rs.getString("endDate"));
-                row.put("capacity", rs.getString("capacity"));
+                row.put("image", rs.getString("image"));
+                row.put("url", rs.getString("url"));
                 rows.put(row);
             }
 

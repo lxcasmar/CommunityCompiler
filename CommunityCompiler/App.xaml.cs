@@ -9,6 +9,7 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new NavBar(ServiceAid.GetService<EventDataService>());
+		MainPage = new NavBar(ServiceAid.GetService<EventDataService>(),
+							  ServiceAid.GetService<UserDataService>());
     }
 }

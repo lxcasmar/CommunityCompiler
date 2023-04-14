@@ -38,6 +38,15 @@
 	  <MauiImage Remove="Resources\Images\header.png" />
 	  <MauiImage Remove="Resources\Images\backbutton.png" />
 	  <MauiImage Remove="Resources\Images\header.png" />
+	  <MauiImage Remove="Resources\Images\selected_home.png" />
+	  <MauiImage Remove="Resources\Images\dotnet_bot.svg" />
+	  <MauiImage Remove="Resources\Images\selected_search.png" />
+	  <MauiImage Remove="Resources\Images\selected_favorites.png" />
+	  <MauiImage Remove="Resources\Images\unselected_home.png" />
+	  <MauiImage Remove="Resources\Images\unselected_search.png" />
+	  <MauiImage Remove="Resources\Images\unselected_favorites.png" />
+	  <MauiImage Remove="Resources\Images\unselected_settings.png" />
+	  <MauiImage Remove="Resources\Images\selected_settings.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -48,9 +57,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
-
-		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
@@ -91,6 +97,16 @@
 	  <None Remove="Resources\Images\selected_search_s.png" />
 	  <None Remove="Resources\Images\selected_favorites_s.png" />
 	  <None Remove="Resources\Images\selected_home_s.png" />
+	  <None Remove="Resources\Images\selected_home.png" />
+	  <None Remove="Resources\Images\dotnet_bot.svg" />
+	  <None Remove="Resources\Images\selected_search.png" />
+	  <None Remove="Resources\Images\selected_favorites.png" />
+	  <None Remove="Resources\Images\unselected_home.png" />
+	  <None Remove="Resources\Images\unselected_search.png" />
+	  <None Remove="Resources\Images\pittsburgh_home.jpg" />
+	  <None Remove="Resources\Images\unselected_favorites.png" />
+	  <None Remove="Resources\Images\unselected_settings.png" />
+	  <None Remove="Resources\Images\selected_settings.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -106,6 +122,29 @@
 	  <MauiImage Include="Resources\Images\header.png" />
 	  <MauiImage Include="Resources\Images\backbutton.png" />
 	  <MauiImage Include="Resources\Images\header.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\selected_home.png" />
+	  <MauiImage Include="Resources\Images\dotnet_bot.svg" />
+	  <MauiImage Include="Resources\Images\selected_search.png" />
+	  <MauiImage Include="Resources\Images\selected_favorites.png" />
+	  <MauiImage Include="Resources\Images\unselected_home.png" />
+	  <MauiImage Include="Resources\Images\unselected_search.png" />
+	  <MauiImage Include="Resources\Images\pittsburgh_home.jpg" />
+	  <MauiImage Include="Resources\Images\unselected_favorites.png" />
+	  <MauiImage Include="Resources\Images\unselected_settings.png" />
+	  <MauiImage Include="Resources\Images\selected_settings.png" />
+	  <MauiImage Include="Resources\Images\selected_home.png" />
+	  <MauiImage Include="Resources\Images\dotnet_bot.svg">
+	    <BaseSize>168,208</BaseSize>
+	  </MauiImage>
+	  <MauiImage Include="Resources\Images\selected_search.png" />
+	  <MauiImage Include="Resources\Images\selected_favorites.png" />
+	  <MauiImage Include="Resources\Images\unselected_home.png" />
+	  <MauiImage Include="Resources\Images\unselected_search.png" />
+	  <MauiImage Include="Resources\Images\unselected_favorites.png" />
+	  <MauiImage Include="Resources\Images\unselected_settings.png" />
+	  <MauiImage Include="Resources\Images\selected_settings.png" />
 	  <MauiImage Include="Resources\Images\backbutton.png" />
 	  <MauiImage Include="Resources\Images\header.png" />
 	  <MauiImage Include="Resources\Images\pittsburgh_home.jpg" />

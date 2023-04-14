@@ -48,8 +48,10 @@ public class EventServer extends Server{
                 + "	description text NOT NULL,\n"
                 + " startDate datetime NOT NULL,\n"
                 + "	location text NOT NULL,\n"
+                + " image text,\n"
+                + " url text,\n"
+                + " type text,\n"
                 + " endDate datetime,\n"
-                + " capacity integer,\n"
                 + "	owner text NOT NULL,\n"
                 + "	FOREIGN KEY (owner) REFERENCES users(uuid)\n"
                 + ");";
