@@ -7,15 +7,20 @@ namespace CommunityCompiler.Views;
 public partial class NavBar : TabbedPage
 {
     UserDataService _UserDataService;
+    EventDataService _eventDataService;
 
-    public NavBar(EventDataService eventDataService, UserDataService userDataService)
+    public NavBar()
     {
-        InitializeComponent();
+            InitializeComponent();
+
+            _eventDataService = ServiceAid.GetService<EventDataService>();
+            _UserDataService = ServiceAid.GetService<UserDataService>();
+
 #if ANDROID || WINDOWS10_0_17763_0_OR_GREATER
-        nav_home.IconImageSource = "selected_home.png";
-        nav_search.IconImageSource = "unselected_search.png";
-        nav_settings.IconImageSource = "unselected_settings.png";
-        nav_favorites.IconImageSource = "unselected_favorites.png";
+            nav_home.IconImageSource = "selected_home.png";
+            nav_search.IconImageSource = "unselected_search.png";
+            nav_settings.IconImageSource = "unselected_settings.png";
+            nav_favorites.IconImageSource = "unselected_favorites.png";
 #else
         // for some reason, not automatic resizing for icon images on iOS
         nav_home.IconImageSource = "selected_home_s.png";
@@ -24,25 +29,28 @@ public partial class NavBar : TabbedPage
         nav_favorites.IconImageSource = "unselected_favorites_s.png";
 #endif
 
-        CurrentPageChanged += CurrentPageHasChanged;
+            CurrentPageChanged += CurrentPageHasChanged;
 
-        MessagingCenter.Subscribe<Object, int>(this, "Search", ((arg, idx) => {
+            MessagingCenter.Subscribe<Object, int>(this, "Search", ((arg, idx) =>
+            {
 
-            CurrentPage = this.Children[1];
+                CurrentPage = this.Children[1];
 
-        }));
+            }));
 
-        MessagingCenter.Subscribe<Object, int>(this, "Favorites", ((arg, idx) => {
+            MessagingCenter.Subscribe<Object, int>(this, "Favorites", ((arg, idx) =>
+            {
 
-            CurrentPage = this.Children[2];
+                CurrentPage = this.Children[2];
 
-        }));
+            }));
 
-        MessagingCenter.Subscribe<Object, int>(this, "Settings", ((arg, idx) => {
+            MessagingCenter.Subscribe<Object, int>(this, "Settings", ((arg, idx) =>
+            {
 
-            CurrentPage = this.Children[3];
+                CurrentPage = this.Children[3];
 
-        }));
+            }));
 
         eventDataService.Connect("ec2-3-16-160-137.us-east-2.compute.amazonaws.com:2002");
         _UserDataService = userDataService;

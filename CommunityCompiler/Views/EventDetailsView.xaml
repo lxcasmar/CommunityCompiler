@@ -1,15 +1,48 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CommunityCompiler.Views.EventDetailsView"
              Title="EventDetailsView">
-    <StackLayout>
-        <Label 
-            x:Name="eventName" FontSize="Title" FontAttributes="Bold"/>
-        <Label x:Name="Details" Text="Details" FontSize="Medium" Margin="0,20,0,0"/>
-        <Label
-            x:Name="Location"/>
-        <Label
-            x:Name="Distance"/>
-    </StackLayout>
+    <!--Added Grid to add Favorites button to the bottom of page. Everything should look the same within the StackLayout-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0">
+            <StackLayout>
+                <Label 
+                    x:Name="eventName" FontSize="Title" FontAttributes="Bold"/>
+                <Label x:Name="Details" Text="Details" FontSize="Medium" Margin="0,20,0,0"/>
+                <Label
+                    x:Name="Location"/>
+                <Label
+                    x:Name="Distance"/>
+            </StackLayout>
+        </ScrollView>
+
+        <Button x:Name="favoriteBtn"
+                Grid.Row="1"
+                Text="Add to Favorites"
+                FontFamily="Bold"
+                FontAttributes="Bold"
+                Margin="0,0,0,10"
+                Clicked="AddToFavoritesButton_Clicked"
+                BackgroundColor="#C17A55"
+                HorizontalOptions="Center"
+                VerticalOptions="End"/>
+
+        <Label x:Name="toastLabel"
+               Text="Event added to favorites!"
+               FontSize="Medium"
+               BackgroundColor="White"
+               TextColor="DarkGray"
+               FontAttributes="Bold"
+               FontFamily="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Opacity="0"
+               IsVisible="False" />
+    </Grid>
 </ContentPage>

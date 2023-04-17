@@ -1,21 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
+using CommunityCompiler.ViewModels;
+
 namespace CommunityCompiler.Services
 {
-	public static class ServiceAid
-	{
+    public static class ServiceAid
+    {
+        private static readonly Dictionary<Type, object> Services = new Dictionary<Type, object>();
+
+        static ServiceAid()
+        {
+            Services.Add(typeof(SearchEventsViewModel), new SearchEventsViewModel());
+            Services.Add(typeof(FavoritesViewModel), new FavoritesViewModel());
+            Services.Add(typeof(EventDataService), new EventDataService());
+            Services.Add(typeof(UserDataService), new UserDataService());
+            Services.Add(typeof(HomeViewModel), new HomeViewModel());
+        }
+
         public static TService GetService<TService>()
-        => Current.GetService<TService>();
+        {
+            return (TService)Services[typeof(TService)];
+        }
 
         public static IServiceProvider Current =>
 #if WINDOWS10_0_17763_0_OR_GREATER
-			MauiWinUIApplication.Current.Services;
+            MauiWinUIApplication.Current.Services;
 #elif ANDROID
-                MauiApplication.Current.Services;
+            MauiApplication.Current.Services;
 #elif IOS || MACCATALYST
-			MauiUIApplicationDelegate.Current.Services;
+            MauiUIApplicationDelegate.Current.Services;
 #else
-			null;
+            null;
 #endif
     }
 }
-

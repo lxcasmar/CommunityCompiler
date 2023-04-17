@@ -8,10 +8,10 @@
              Title="FavoritesView">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout>
+        <StackLayout Grid.Row="0">
             <controls:PageHeader />
             <Label 
                 Text="Favorites"
@@ -21,6 +21,51 @@
                 VerticalOptions="Center"
                 Margin="15,0,0,0"
                 HorizontalOptions="Start" />
+            <Label 
+                Text="Slide right to delete"
+                FontSize="Default"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
         </StackLayout>
+        <ListView x:Name="FavoriteEventsListView"
+                  ItemsSource="{Binding FavoriteEvents}"
+                  HasUnevenRows="True"
+                  Grid.Row="1"
+                  SeparatorVisibility="None"
+                  BackgroundColor="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete"
+                                                   IconImageSource="delete_icon.png"
+                                                   BackgroundColor="Red"
+                                                   Command="{Binding BindingContext.DeleteFavoriteEventCommand, Source={x:Reference FavoriteEventsListView}}"
+                                                   CommandParameter="{Binding .}" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <Frame CornerRadius="20">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnFavoriteEventTapped" CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout>
+                                        <StackLayout>
+                                            <Label Text="{Binding Name}" TextColor="Black"/>
+                                            <Label Text="{Binding Dist}" TextColor="Grey" Margin=" 270,-16,0,0"/>
+                                            <Label Text="mile(s)" TextColor="Grey" Margin="270,-3,0,0"/>
+                                            <Label Text="{Binding Location}" TextColor="Gray"  Margin="0,-22,0,0"/>
+                                            <Label Text="{Binding StartDate}" TextColor="Gray"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </SwipeView>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </ContentPage>

@@ -31,8 +31,8 @@ namespace CommunityCompiler.Views
 
         private async void OnListViewClick(object sender, SelectedItemChangedEventArgs e)
         {
-            var events = e.SelectedItem as Event;
-            await Navigation.PushAsync(new EventDetailsView(events.Name, events.Location, events.StartDate, events.EndDate, events.StartTime, events.EndTime, events.Dist));
+            var eventItem = e.SelectedItem as Event;
+            await Navigation.PushAsync(new EventDetailsView(eventItem, true));
         }
 
 

@@ -107,6 +107,7 @@
 	  <None Remove="Resources\Images\unselected_favorites.png" />
 	  <None Remove="Resources\Images\unselected_settings.png" />
 	  <None Remove="Resources\Images\selected_settings.png" />
+	  <None Remove="Resources\Images\delete_icon.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -164,5 +165,8 @@
 	  <MauiImage Include="Resources\Images\selected_search_s.png" />
 	  <MauiImage Include="Resources\Images\selected_favorites_s.png" />
 	  <MauiImage Include="Resources\Images\selected_home_s.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\delete_icon.png" />
 	</ItemGroup>
 </Project>
