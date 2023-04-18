@@ -13,11 +13,11 @@ namespace CommunityCompiler.ViewModels
 		/// </summary>
 		public ICommand Submit { get; set; }
 
-		public LoginViewModel(UserDataService userDataService)
+		public LoginViewModel()
 		{
-			_UserDataService = userDataService;
+            _UserDataService = ServiceAid.GetService<UserDataService>();
 
-			Submit = new Command((args) =>
+            Submit = new Command((args) =>
 			{
 				string username = (args as String[])[0];
 				string password = (args as String[])[1];

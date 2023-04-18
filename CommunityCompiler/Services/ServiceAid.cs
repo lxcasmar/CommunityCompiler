@@ -15,6 +15,9 @@ namespace CommunityCompiler.Services
             Services.Add(typeof(EventDataService), new EventDataService());
             Services.Add(typeof(UserDataService), new UserDataService());
             Services.Add(typeof(HomeViewModel), new HomeViewModel());
+            Services.Add(typeof(LoginViewModel), new LoginViewModel());
+            Services.Add(typeof(RegisterViewModel), new RegisterViewModel());
+            Services.Add(typeof(BaseViewModel), new BaseViewModel());
         }
 
         public static TService GetService<TService>()
