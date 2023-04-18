@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CommunityCompiler.Views"
              NavigationPage.HasNavigationBar="False"
              Title="SettingView">
-    <Grid>
+    <!-- <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -64,5 +64,19 @@
                 HorizontalOptions="FillAndExpand"
                 Clicked="privacyBtnClicked"/>
         </StackLayout>
-    </Grid>
+    </Grid> -->
+    <StackLayout>
+            <Button
+                HeightRequest="60"
+                TextColor="#636d7d"
+                BorderColor="#868f9e"
+                BorderWidth="1"
+                FontAttributes="Bold"
+                FontFamily="Bold"
+                FontSize="Default"
+                BackgroundColor="Transparent"
+                Text="Account"
+                HorizontalOptions="FillAndExpand"
+                Clicked="accountBtnClicked"/>
+    </StackLayout>
 </ContentPage>

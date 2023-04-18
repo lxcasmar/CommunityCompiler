@@ -14,13 +14,13 @@ public partial class SettingView : ContentPage
         await Navigation.PushAsync(new LoginView());
     }
 
-    private async void aboutBtnClicked(object sender, EventArgs e)
-    {
-        this.ShowPopup(new AboutPopup());
-    }
+    // private async void aboutBtnClicked(object sender, EventArgs e)
+    // {
+    //     this.ShowPopup(new AboutPopup());
+    // }
 
-    private async void privacyBtnClicked(object sender, EventArgs e)
-    {
-        this.ShowPopup(new PrivacyPopup());
-    }
+    // private async void privacyBtnClicked(object sender, EventArgs e)
+    // {
+    //     this.ShowPopup(new PrivacyPopup());
+    // }
 }
