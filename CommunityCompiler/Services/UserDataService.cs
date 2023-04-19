@@ -1,6 +1,5 @@
 ﻿using System;
 using WebSocketSharp;
-using Xamarin.Google.Crypto.Tink.Signature;
 
 namespace CommunityCompiler.Services
 {

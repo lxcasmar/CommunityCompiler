@@ -10,10 +10,10 @@ namespace CommunityCompiler.Services
 
         static ServiceAid()
         {
-            Services.Add(typeof(SearchEventsViewModel), new SearchEventsViewModel());
-            Services.Add(typeof(FavoritesViewModel), new FavoritesViewModel());
             Services.Add(typeof(EventDataService), new EventDataService());
             Services.Add(typeof(UserDataService), new UserDataService());
+            Services.Add(typeof(SearchEventsViewModel), new SearchEventsViewModel());
+            Services.Add(typeof(FavoritesViewModel), new FavoritesViewModel());
             Services.Add(typeof(HomeViewModel), new HomeViewModel());
             Services.Add(typeof(LoginViewModel), new LoginViewModel());
             Services.Add(typeof(RegisterViewModel), new RegisterViewModel());

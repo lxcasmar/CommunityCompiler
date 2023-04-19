@@ -167,6 +167,6 @@
 	  <MauiImage Include="Resources\Images\selected_home_s.png" />
 	</ItemGroup>
 	<ItemGroup>
-	  <BundleResource Include="Resources\Images\delete_icon.png" />
+	  <MauiImage Include="Resources\Images\delete_icon.png" />
 	</ItemGroup>
 </Project>

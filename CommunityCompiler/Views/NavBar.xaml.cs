@@ -52,8 +52,8 @@ public partial class NavBar : TabbedPage
 
             }));
 
-        _eventDataService.Connect("ec2-52-15-222-174.us-east-2.compute.amazonaws.com:2002");
-        _UserDataService.Connect("ec2-52-15-222-174.us-east-2.compute.amazonaws.com:2001");
+        _eventDataService.Connect("ec2-3-22-186-100.us-east-2.compute.amazonaws.com:2002");
+        _UserDataService.Connect("ec2-3-22-186-100.us-east-2.compute.amazonaws.com:2001");
     }
 
     private async void CurrentPageHasChanged(object sender, EventArgs e)

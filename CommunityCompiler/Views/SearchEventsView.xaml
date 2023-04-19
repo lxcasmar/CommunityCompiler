@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:searchHandlers ="clr-namespace:CommunityCompiler.Search_Handlers"
              xmlns:viewModels ="clr-namespace:CommunityCompiler.ViewModels"
              x:Class="CommunityCompiler.Views.SearchEventsView"
              Shell.NavBarIsVisible="False"
@@ -30,7 +29,7 @@
                                 <Frame CornerRadius="20">
                                     <StackLayout>
                                         <StackLayout>
-                                            <Label Text="{Binding Name}" TextColor="Black"/>
+                                            <Label Text="{Binding name}" TextColor="Black"/>
                                             <Label Text="{Binding Dist}" TextColor="Grey" Margin=" 270,-16,0,0"/>
                                             <Label Text="mile(s)" TextColor="Grey" Margin="270,-3,0,0"/>
                                             <Label Text="{Binding Location}" TextColor="Gray"  Margin="0,-22,0,0"/>

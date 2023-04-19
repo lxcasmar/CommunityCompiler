@@ -7,18 +7,22 @@ namespace CommunityCompiler
         {
         }
 
-        public string Name { get; set; }
+        public string uuid { get; set; }
 
-        public string Location { get; set; }
+        public string description { get; set; }
 
-        public string StartDate { get; set; }
+        public string name { get; set; }
 
-        public string EndDate { get; set; }
+        public string location { get; set; }
+
+        public string startDate { get; set; }
+
+        public string endDate { get; set; }
 
         public string StartTime { get; set; }
 
         public string EndTime { get; set; }
 
-        public int Dist { get; set; }
+        public int Dist { get; set; } = 0;
     }
 }

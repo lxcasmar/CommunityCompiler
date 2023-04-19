@@ -10,8 +10,8 @@ public static class MauiProgram
 	public static MauiApp CreateMauiApp()
 	{
 		var _Builder = MauiApp.CreateBuilder();
-        _Builder
-            .UseMauiApp<App>()
+		_Builder
+			.UseMauiApp<App>()
 			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
@@ -33,9 +33,9 @@ public static class MauiProgram
 			.AddSingleton<NavBarViewModel>()
 			.AddSingleton<NavBar>()
 			.AddSingleton<FavoritesView>()
-			.AddSingleton<FavoritesViewModel>()
-			.AddSingleton<EventDataService>()
-			.AddSingleton<UserDataService>();
+			.AddSingleton<FavoritesViewModel>();
+			//.AddSingleton<EventDataService>()
+			//.AddSingleton<UserDataService>();
 
 		return _Builder.Build();
 	}
