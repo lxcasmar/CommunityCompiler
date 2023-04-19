@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Text;
+using CommunityCompiler.ViewModels;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using WebSocketSharp;
 
 namespace CommunityCompiler.Services
@@ -25,9 +30,34 @@ namespace CommunityCompiler.Services
             Capacity
         }
 
-		public EventDataService()
+        public static string testEventData;
+        public static ObservableCollection<Event> Events;
+
+        public static void PopulateEvents(string data)
+        {
+            JArray arr = JArray.Parse(data);
+            var temp = new ObservableCollection<Event>();
+            foreach (JObject obj in arr)
+            {
+                Event e = JsonConvert.DeserializeObject<Event>(obj.ToString());
+                Console.WriteLine(e);
+                temp.Add(e);
+            }
+            Console.WriteLine("Done");
+            Events = temp;
+        }
+
+        public EventDataService()
 		{
 		}
+
+        public async Task<string> Init()
+        {
+            Send("ALLEVT");
+            //string res = await stcs.Task;
+            testEventData = await stcs.Task;
+            return testEventData;
+        }
 
         /// <summary>
         /// Sends a test message to the server. Similar to a Ping
@@ -59,8 +89,7 @@ namespace CommunityCompiler.Services
         public async Task<string> AllEvents()
         {
             Send("ALLEVT");
-            string response = await stcs.Task;
-            return response;
+            return await stcs.Task;
         }
 
         /// <summary>
@@ -110,7 +139,13 @@ namespace CommunityCompiler.Services
         public override void OnMessage(object sender, MessageEventArgs e)
         {
             base.OnMessage(sender, e);
-            string tag = e.Data.Split(Environment.NewLine)[0];
+            string tag = Encoding.UTF8.GetString(e.RawData).Split(Environment.NewLine)[0];
+
+            if (tag == "ALLEVT")
+            {
+                EventDataService.testEventData = e.Data;
+            }
+
             switch (tag)
             {
                 case "HELLO" or "SELEVT" or "ALLEVT" or "SRCHEVT":

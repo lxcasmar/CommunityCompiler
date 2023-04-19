@@ -1,6 +1,8 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Platform;
 using CommunityCompiler.Services;
+using CommunityCompiler.ViewModels;
+using CommunityCompiler.Models;
 
 namespace CommunityCompiler.Views;
 
@@ -15,7 +17,7 @@ public partial class NavBar : TabbedPage
 
             _eventDataService = ServiceAid.GetService<EventDataService>();
             _UserDataService = ServiceAid.GetService<UserDataService>();
-
+            
 #if ANDROID || WINDOWS10_0_17763_0_OR_GREATER
             nav_home.IconImageSource = "selected_home.png";
             nav_search.IconImageSource = "unselected_search.png";
@@ -52,15 +54,21 @@ public partial class NavBar : TabbedPage
 
             }));
 
-        _eventDataService.Connect("ec2-3-22-186-100.us-east-2.compute.amazonaws.com:2002");
-        _UserDataService.Connect("ec2-3-22-186-100.us-east-2.compute.amazonaws.com:2001");
+        _eventDataService.Connect("ec2-3-142-232-30.us-east-2.compute.amazonaws.com:2002");
+        _UserDataService.Connect("ec2-3-142-232-30.us-east-2.compute.amazonaws.com:2001");
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await _eventDataService.Init();
     }
 
     private async void CurrentPageHasChanged(object sender, EventArgs e)
     {
         var tabbedPage = (TabbedPage)sender;
         Title = tabbedPage.CurrentPage.Title;
-
+        //_eventDataService.AllEvents();
 #if ANDROID || WINDOWS10_0_17763_0_OR_GREATER
         if (Title == "Home")
         {

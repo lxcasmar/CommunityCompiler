@@ -7,6 +7,12 @@ namespace CommunityCompiler
         {
         }
 
+        public string owner { get; set; }
+
+        public string image { get; set; }
+
+        public string type { get; set; }
+
         public string uuid { get; set; }
 
         public string description { get; set; }
@@ -17,12 +23,8 @@ namespace CommunityCompiler
 
         public string startDate { get; set; }
 
-        public string endDate { get; set; }
+        public string url { get; set; }
+        //public string endDate { get; set; }
 
-        public string StartTime { get; set; }
-
-        public string EndTime { get; set; }
-
-        public int Dist { get; set; } = 0;
     }
 }

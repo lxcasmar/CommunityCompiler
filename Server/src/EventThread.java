@@ -57,24 +57,24 @@ public class EventThread extends Thread{
                 System.out.println("Received request: " + tag);
                 switch (tag) {
                     case "HELLO":
-                        response = "ResponseToHello";
+                        response += "ResponseToHello";
                         break;
                     case "CRTEVT":
                         String [] args = cleanedMessage.split(";")[1].split(Server.PARAM_DELIMITER);
-                        response = Boolean.toString(createEvent(args));
+                        response += Boolean.toString(createEvent(args));
                         break;
                     case "ALLEVT":
-                        response = selectAll();
+                        response += selectAll();
                         break;
                     case "SELEVT":
-                        response = selectEvent(cleanedMessage.split(";")[1]);
+                        response += selectEvent(cleanedMessage.split(";")[1]);
                         break;
                     case "SRCHEVT":
                         args = cleanedMessage.split(";")[1].split(Server.PARAM_DELIMITER);
-                        response = searchEvent(args[0], args[1]);
+                        response += searchEvent(args[0], args[1]);
                         break;
                     default:
-                        response = "Unknown request";
+                        response += "Unknown request";
                         break;
                 }
 

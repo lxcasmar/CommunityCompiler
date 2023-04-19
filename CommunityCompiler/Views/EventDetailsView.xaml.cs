@@ -20,7 +20,6 @@ public partial class EventDetailsView : ContentPage
         favoriteBtn.IsVisible = buttonVisibility;
         eventName.Text = _event.name;
         Location.Text = "City: " + _event.location;
-        Distance.Text = "Distance: " + _event.Dist.ToString();
     }
 
     private async void AddToFavoritesButton_Clicked(object sender, EventArgs e)

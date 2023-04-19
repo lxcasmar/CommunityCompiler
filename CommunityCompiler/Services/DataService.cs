@@ -2,6 +2,8 @@
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using CommunityCompiler.Interfaces;
+using CommunityCompiler.Models;
+using CommunityCompiler.ViewModels;
 using WebSocketSharp;
 
 namespace CommunityCompiler.Services
@@ -59,7 +61,8 @@ namespace CommunityCompiler.Services
 		{
 			Console.WriteLine("ReceivedMessage:");
 			Console.WriteLine(Encoding.UTF8.GetString(e.RawData));
-		}
+			//UserState._UserUuid = e.Data;
+        }
 
 		public void Send(String data)
 		{

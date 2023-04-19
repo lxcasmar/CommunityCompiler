@@ -19,23 +19,23 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			})
 			.Services.AddSingleton<HomeViewModel>()
-			.AddSingleton<HomeView>()
+			//.AddSingleton<HomeView>()
 			.AddSingleton<LoginViewModel>()
 			.AddSingleton<LoginView>()
 			.AddSingleton<RegisterViewModel>()
 			.AddSingleton<RegisterView>()
 			.AddSingleton<SettingsViewModel>()
-			.AddSingleton<SettingView>()
+			//.AddSingleton<SettingView>()
 			.AddSingleton<FeaturedEventsViewModel>()
 			.AddSingleton<FeaturedEventsView>()
 			.AddSingleton<SearchEventsViewModel>()
-			.AddSingleton<SearchEventsView>()
+			//.AddSingleton<SearchEventsView>()
 			.AddSingleton<NavBarViewModel>()
 			.AddSingleton<NavBar>()
-			.AddSingleton<FavoritesView>()
-			.AddSingleton<FavoritesViewModel>();
-			//.AddSingleton<EventDataService>()
-			//.AddSingleton<UserDataService>();
+			//.AddSingleton<FavoritesView>()
+			.AddSingleton<FavoritesViewModel>()
+			.AddSingleton<EventDataService>()
+			.AddSingleton<UserDataService>();
 
 		return _Builder.Build();
 	}

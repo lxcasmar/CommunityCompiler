@@ -1,9 +1,11 @@
+using CommunityCompiler.Models;
 using CommunityCompiler.Services;
 using CommunityCompiler.ViewModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 using Newtonsoft.Json.Linq;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics.Tracing;
 
 namespace CommunityCompiler.Views
@@ -20,21 +22,25 @@ namespace CommunityCompiler.Views
             InitializeComponent();
             _EventDataService = ServiceAid.GetService<EventDataService>();
             BindingContext = _ViewModel = ServiceAid.GetService<SearchEventsViewModel>();
+            
         }
 
         protected override void OnAppearing()
         {
-            _ViewModel.Events = new ObservableCollection<Event>();
-            string res = _EventDataService.AllEvents().Result;
-            Console.WriteLine(res);
-            JArray arr = JArray.Parse(res);
-            foreach (JObject obj in arr)
-            {
-                Event e = JsonConvert.DeserializeObject<Event>(obj.ToString());
-                Console.WriteLine(e);
-            }
+            _ViewModel.PropertyChanged += _ViewModel.OnViewModelPropertyChanged;
+            EventDataService.PopulateEvents(EventDataService.testEventData);
+            _ViewModel.Events = EventDataService.Events;
+            //Console.WriteLine("anyREsponse? " + UserState._UserUuid);
+            
+            base.OnAppearing();
         }
 
+        protected override void OnDisappearing()
+        {
+            _ViewModel.PropertyChanged -= _ViewModel.OnViewModelPropertyChanged;
+            base.OnDisappearing();
+        }
+       
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {

@@ -56,35 +56,35 @@ public class UserThread extends Thread{
                 System.out.println("Received request: " + tag);
                 switch (tag) {
                     case "HELLO":
-                        response = "ResponseToHello";
+                        response += "ResponseToHello";
                         break;
                     case "CRTUSR":
                         String[] args = cleanedMessage.split(";")[1].split(Server.PARAM_DELIMITER);
-                        response = Boolean.toString(createUser(args[0], args[1], args[2], args[3], args[4]));
+                        response += Boolean.toString(createUser(args[0], args[1], args[2], args[3], args[4]));
                         break;
                     case "ALLUSR":
-                        response = selectAll();
+                        response += selectAll();
                         break;
                     case "SELUSR":
-                        response = selectUser(message.toString().split(";")[1]);
+                        response += selectUser(message.toString().split(";")[1]);
                         break;
                     case "AUTH":
                         args = message.toString().split(";")[1].split(Server.PARAM_DELIMITER);
-                        response = auth(args[0], args[1]);
+                        response += auth(args[0], args[1]);
                         break;
                     case "ALLFAV":
-                        response = getFavorites(cleanedMessage.split(";")[1]);
+                        response += getFavorites(cleanedMessage.split(";")[1]);
                         break;
                     case "ADDFAV":
                         args = cleanedMessage.split(";")[1].split(Server.PARAM_DELIMITER);
-                        response = Boolean.toString(addFavorite(args[0], args[1]));
+                        response += Boolean.toString(addFavorite(args[0], args[1]));
                         break;
                     case "DELFAV":
                         args = cleanedMessage.split(";")[1].split(Server.PARAM_DELIMITER);
-                        response = Boolean.toString(deleteFavorite(args[0], args[1]));
+                        response += Boolean.toString(deleteFavorite(args[0], args[1]));
                         break;
                     default:
-                        response = "Unknown request received";
+                        response += "Unknown request received";
                         break;
                 }
                 output.write(RFC6455.encode(response, false));

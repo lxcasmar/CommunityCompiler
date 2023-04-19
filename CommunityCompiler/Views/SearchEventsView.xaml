@@ -30,10 +30,8 @@
                                     <StackLayout>
                                         <StackLayout>
                                             <Label Text="{Binding name}" TextColor="Black"/>
-                                            <Label Text="{Binding Dist}" TextColor="Grey" Margin=" 270,-16,0,0"/>
-                                            <Label Text="mile(s)" TextColor="Grey" Margin="270,-3,0,0"/>
-                                            <Label Text="{Binding Location}" TextColor="Gray"  Margin="0,-22,0,0"/>
-                                            <Label Text="{Binding StartDate}" TextColor="Gray"/>
+                                            <Label Text="{Binding location}" TextColor="Gray"  Margin="0,-22,0,0"/>
+                                            <Label Text="{Binding startDate}" TextColor="Gray"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </Frame>
