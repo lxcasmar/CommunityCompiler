@@ -30,34 +30,9 @@ namespace CommunityCompiler.Services
             Capacity
         }
 
-        public static string testEventData;
-        public static ObservableCollection<Event> Events;
-
-        public static void PopulateEvents(string data)
-        {
-            JArray arr = JArray.Parse(data);
-            var temp = new ObservableCollection<Event>();
-            foreach (JObject obj in arr)
-            {
-                Event e = JsonConvert.DeserializeObject<Event>(obj.ToString());
-                Console.WriteLine(e);
-                temp.Add(e);
-            }
-            Console.WriteLine("Done");
-            Events = temp;
-        }
-
         public EventDataService()
 		{
 		}
-
-        public async Task<string> Init()
-        {
-            Send("ALLEVT");
-            //string res = await stcs.Task;
-            testEventData = await stcs.Task;
-            return testEventData;
-        }
 
         /// <summary>
         /// Sends a test message to the server. Similar to a Ping
@@ -121,8 +96,8 @@ namespace CommunityCompiler.Services
                                             string description,
                                             string location,
                                             string start,
-                                            string end=null,
-                                            int capacity=-1)
+                                            string end=null
+                                            )
         {
             Send("CRTEVT;"
                  + ownerUUID + _ParamDelimiter
@@ -130,8 +105,7 @@ namespace CommunityCompiler.Services
                  + description + _ParamDelimiter
                  + location + _ParamDelimiter
                  + start + _ParamDelimiter
-                 + (end is not null ? end + _ParamDelimiter : "")
-                 + (capacity != -1 ? capacity : ""));
+                 + (end is not null ? end + _ParamDelimiter : ""));
             bool response = await btcs.Task;
             return response;
         }
@@ -140,21 +114,19 @@ namespace CommunityCompiler.Services
         {
             base.OnMessage(sender, e);
             string tag = Encoding.UTF8.GetString(e.RawData).Split(Environment.NewLine)[0];
-
-            if (tag == "ALLEVT")
-            {
-                EventDataService.testEventData = e.Data;
-            }
+            string dat = e.Data.Substring(e.Data.IndexOf(tag) + tag.Length + 1);
 
             switch (tag)
             {
                 case "HELLO" or "SELEVT" or "ALLEVT" or "SRCHEVT":
-                    stcs.SetResult(e.Data);
+                    stcs.SetResult(dat);
                     break;
                 case "CRTEVT":
-                    btcs.SetResult(Boolean.Parse(e.Data));
+                    btcs.SetResult(Boolean.Parse(dat));
                     break;
             }
+
+            ResetTCS();
         }
     }
 }

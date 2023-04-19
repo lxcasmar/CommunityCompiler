@@ -134,15 +134,18 @@ namespace CommunityCompiler.Services
         {
             base.OnMessage(sender, e);
 			string tag = e.Data.Split(Environment.NewLine)[0];
+			string dat = e.Data.Substring(e.Data.IndexOf(tag) + tag.Length + 1);
 			switch (tag)
 			{
 				case "HELLO" or "ALLUSR" or "SELUSR" or "AUTH" or "ALLFAV":
-					stcs.SetResult(e.Data);
+					stcs.SetResult(dat);
 					break;
 				case "CRTUSR" or "ADDFAV" or "DELFAV":
-					btcs.SetResult(Boolean.Parse(e.Data));
+					btcs.SetResult(Boolean.Parse(dat));
 					break;
 			}
+
+			ResetTCS();
         }
     }
 }

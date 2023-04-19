@@ -28,9 +28,8 @@ public partial class CreateEventPopup : Popup
         string location = eventAddress.Text;
         string start = eventDate.Date.ToString("yyyy-MM-dd") + " " + startTime.Time.ToString(@"hh\:mm\:ss");
         string end = eventDate.Date.ToString("yyyy-MM-dd") + " " + endTime.Time.ToString(@"hh\:mm\:ss");
-        int capacity = 1; 
 
-        bool success = await eventDataService.CreateEvent(ownerUUID, title, description, location, start, end, capacity);
+        bool success = await eventDataService.CreateEvent(ownerUUID, title, description, location, start, end);
 
         if (success)
         {

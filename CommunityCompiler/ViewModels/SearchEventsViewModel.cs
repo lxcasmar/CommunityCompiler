@@ -13,9 +13,7 @@ namespace CommunityCompiler.ViewModels
 {
     public class SearchEventsViewModel : BaseViewModel
     {
-        public static string eventdebug;
-
-        private ObservableCollection<Event> _Events;
+        private ObservableCollection<Event> _Events = new ObservableCollection<Event>();
         public ObservableCollection<Event> Events
         {
             get { return _Events; }
@@ -30,33 +28,29 @@ namespace CommunityCompiler.ViewModels
         {
             switch (e.PropertyName)
             {
-                case nameof(eventdebug):
-                    Console.WriteLine("changed");
-                    break;
                 case nameof(Events):
                     Console.WriteLine("changed Events");
                     break;
             }
         }
 
-        //public void PopulateEvents(string data)
-        //{
-        //    JArray arr = JArray.Parse(data);
-        //    var temp = new ObservableCollection<Event>();
-        //    foreach (JObject obj in arr)
-        //    {
-        //        Event e = JsonConvert.DeserializeObject<Event>(obj.ToString());
-        //        Console.WriteLine(e);
-        //        temp.Add(e);
-        //    }
-        //    Console.WriteLine("Done");
-        //    Events = temp;
-        //}
+        public void PopulateEvents(string data)
+        {
+            JArray arr = JArray.Parse(data);
+            var temp = new ObservableCollection<Event>();
+            foreach (JObject obj in arr)
+            {
+                Event e = JsonConvert.DeserializeObject<Event>(obj.ToString());
+                Console.WriteLine(e);
+                temp.Add(e);
+            }
+            Console.WriteLine("Done");
+            Events = temp;
+        }
 
         public SearchEventsViewModel()
         {
             
-           Events = new ObservableCollection<Event>();
            //{
            //    new Event(){Name = "Cavs v Warriors", Location = "Cleveland", StartDate = "11/11/23", EndDate = "11/11/23", StartTime = "7:30", EndTime = "11:00", Dist = 50},
            //    new Event(){Name = "Lantern Fest", Location = "Pittsburgh", StartDate = "7/4/23", EndDate = "7/5/23", StartTime = "6:30", EndTime = "10:00", Dist = 4},

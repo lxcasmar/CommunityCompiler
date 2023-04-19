@@ -61,7 +61,6 @@ public partial class NavBar : TabbedPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await _eventDataService.Init();
     }
 
     private async void CurrentPageHasChanged(object sender, EventArgs e)

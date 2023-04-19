@@ -53,7 +53,7 @@ public class EventThread extends Thread{
                 String cleanedMessage = message.toString().trim();
                 String tag = message.toString().split(";")[0];
                 String response = tag + "\n";
-                System.out.println("Received message" + cleanedMessage);
+                //System.out.println("Received message" + cleanedMessage);
                 System.out.println("Received request: " + tag);
                 switch (tag) {
                     case "HELLO":
@@ -157,9 +157,7 @@ public class EventThread extends Thread{
                 return false;
         }
         String uuid = UUID.randomUUID().toString();
-
         try (Connection conn = DriverManager.getConnection(Server.dbUrl)) {
-            
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, uuid);
             pstmt.setString(2, owneruuid);
@@ -177,7 +175,6 @@ public class EventThread extends Thread{
                 return false;
             }        
             pstmt.setDate(6, new java.sql.Date(parsedDate.getTime()));
-
             if (endDate != null) {
                 try {
                     parsedDate = dateFormat.parse(endDate);

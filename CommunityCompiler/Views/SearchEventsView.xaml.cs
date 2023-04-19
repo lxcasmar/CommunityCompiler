@@ -25,12 +25,10 @@ namespace CommunityCompiler.Views
             
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             _ViewModel.PropertyChanged += _ViewModel.OnViewModelPropertyChanged;
-            EventDataService.PopulateEvents(EventDataService.testEventData);
-            _ViewModel.Events = EventDataService.Events;
-            //Console.WriteLine("anyREsponse? " + UserState._UserUuid);
+            _ViewModel.PopulateEvents(await _EventDataService.AllEvents());
             
             base.OnAppearing();
         }

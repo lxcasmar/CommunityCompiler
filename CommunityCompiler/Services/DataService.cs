@@ -61,8 +61,14 @@ namespace CommunityCompiler.Services
 		{
 			Console.WriteLine("ReceivedMessage:");
 			Console.WriteLine(Encoding.UTF8.GetString(e.RawData));
-			//UserState._UserUuid = e.Data;
         }
+
+		protected void ResetTCS()
+		{
+            stcs = new TaskCompletionSource<string>();
+            btcs = new TaskCompletionSource<bool>();
+        }
+
 
 		public void Send(String data)
 		{
