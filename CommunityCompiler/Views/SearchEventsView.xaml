@@ -27,7 +27,7 @@
                             <Grid Padding="10">
                                 <Frame CornerRadius="20">
                                     <StackLayout>
-                                        <StackLayout>
+                                        <StackLayout x:Name="labelContainer">
                                             <Label Text="{Binding name}" TextColor="Black"/>
                                             <Label Text="{Binding location}" TextColor="Gray"  Margin="0,-22,0,0"/>
                                             <Label Text="{Binding startDate}" TextColor="Gray"/>

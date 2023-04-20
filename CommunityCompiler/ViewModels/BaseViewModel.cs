@@ -38,13 +38,18 @@ namespace CommunityCompiler.ViewModels
 			}
 		}
 
-        #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 		protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			try
+			{
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			} catch (NullReferenceException e)
+			{
+				Console.WriteLine(e.Message);
+				return;
+			}
 		}
-		#endregion
 
 		public virtual void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
