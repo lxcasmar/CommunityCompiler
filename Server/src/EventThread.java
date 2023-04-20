@@ -235,21 +235,35 @@ public class EventThread extends Thread{
             pstmt.setString(1, uuid);
             ResultSet rs = pstmt.executeQuery();
             JSONArray rows = new JSONArray();
-            while (rs.next()) {
-                JSONObject row = new JSONObject();
-                row.put("uuid", rs.getString("uuid"));
-                row.put("owner", rs.getString("owner"));
-                row.put("name", rs.getString("name"));
-                row.put("description", rs.getString("description"));
-                row.put("location", rs.getString("location"));
-                row.put("startDate", rs.getString("startDate"));
-                row.put("endDate", rs.getString("endDate"));
-                row.put("image", rs.getString("image"));
-                row.put("url", rs.getString("url"));
-                rows.put(row);
+            JSONObject obj = new JSONObject();
+            if (rs.next()) {
+                obj.put("uuid", rs.getString("uuid"));
+                obj.put("owner", rs.getString("owner"));
+                obj.put("name", rs.getString("name"));
+                obj.put("description", rs.getString("description"));
+                obj.put("location", rs.getString("location"));
+                obj.put("startDate", rs.getString("startDate"));
+                obj.put("endDate", rs.getString("endDate"));
+                obj.put("image", rs.getString("image"));
+                obj.put("url", rs.getString("url"));
+                obj.put("type", rs.getString("type"));
             }
+            // while (rs.next()) {
+            //     JSONObject row = new JSONObject();
+            //     row.put("uuid", rs.getString("uuid"));
+            //     row.put("owner", rs.getString("owner"));
+            //     row.put("name", rs.getString("name"));
+            //     row.put("description", rs.getString("description"));
+            //     row.put("location", rs.getString("location"));
+            //     row.put("startDate", rs.getString("startDate"));
+            //     row.put("endDate", rs.getString("endDate"));
+            //     row.put("image", rs.getString("image"));
+            //     row.put("url", rs.getString("url"));
+            //     rows.put(row);
+            // }
 
-            String json = rows.toString(4);
+            // String json = rows.toString(4);
+            String json = obj.toString(4);
             return json;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

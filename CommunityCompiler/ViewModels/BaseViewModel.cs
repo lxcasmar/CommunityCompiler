@@ -15,20 +15,20 @@ namespace CommunityCompiler.ViewModels
 		{
 		}
 
-		public ICommand NavigateToCommand { get; set; } = new Command((route) =>
-		{
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-				await Shell.Current.Navigation.PopToRootAsync(false);
-				//TODO: above line should probably replaced with removing pages
-				// from the navigation stack instead of actually navigating.
-                await Shell.Current.GoToAsync(route as String, false);
-            });
-			
-			Console.WriteLine($"Pushing Navigation to {route}");
-		});
+        //public ICommand NavigateToCommand { get; set; } = new Command((route) =>
+        //{
+        //          MainThread.BeginInvokeOnMainThread(async () =>
+        //          {
+        //		await Shell.Current.Navigation.PopToRootAsync(false);
+        //		//TODO: above line should probably replaced with removing pages
+        //		// from the navigation stack instead of actually navigating.
+        //              await Shell.Current.GoToAsync(route as String, false);
+        //          });
 
-		public bool UserSignedIn
+        //	Console.WriteLine($"Pushing Navigation to {route}");
+        //});
+
+        public bool UserSignedIn
 		{
 			get { return UserState._UserSignedIn; }
 			set

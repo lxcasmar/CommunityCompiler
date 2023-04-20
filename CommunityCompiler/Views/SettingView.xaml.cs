@@ -11,7 +11,7 @@ public partial class SettingView : ContentPage
 
     private async void accountBtnClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new LoginView());
+        await Navigation.PushAsync(new RegisterView());
     }
 
     private async void aboutBtnClicked(object sender, EventArgs e)

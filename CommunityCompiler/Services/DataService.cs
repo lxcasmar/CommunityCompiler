@@ -65,8 +65,8 @@ namespace CommunityCompiler.Services
 
 		protected void ResetTCS()
 		{
-            stcs = new TaskCompletionSource<string>();
-            btcs = new TaskCompletionSource<bool>();
+			stcs = new TaskCompletionSource<string>();
+			btcs = new TaskCompletionSource<bool>();
         }
 
 

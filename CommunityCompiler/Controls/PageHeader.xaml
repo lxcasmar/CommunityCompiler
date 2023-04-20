@@ -19,5 +19,9 @@
                Source="header.png"
                HorizontalOptions="Start"
                VerticalOptions="Center" />
+        <Label
+            Grid.Column="2"
+            Text="{Binding CurUserName}"
+            FontSize="Subtitle"/>
     </Grid>
 </ContentView>

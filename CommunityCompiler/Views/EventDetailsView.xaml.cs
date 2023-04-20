@@ -1,5 +1,6 @@
 using CommunityCompiler.ViewModels;
 using CommunityCompiler.Services;
+using CommunityCompiler.Models;
 
 namespace CommunityCompiler.Views;
 
@@ -24,8 +25,14 @@ public partial class EventDetailsView : ContentPage
 
     private async void AddToFavoritesButton_Clicked(object sender, EventArgs e)
     {
+        if (!UserState._UserSignedIn)
+        {
+            await ShowToastAsync("Not Signed In!", 3000);
+            return;
+        }
+        bool res = await _UserDataService.AddFavorite(UserState._UserUuid, _event.uuid);
+
         _favoritesViewModel.AddToFavorites(_event);
-        //bool res = _UserDataService.AddFavorite();
         await ShowToastAsync("Event added to favorites!", 3000); // display toast
     }
 

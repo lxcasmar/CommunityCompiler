@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using CommunityCompiler.Services;
 using CommunityCompiler.ViewModels;
 
@@ -17,5 +18,21 @@ public partial class RegisterView : ContentPage
     private async void loginBtn_clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new LoginView());
+    }
+
+    private void registerBtn_clicked(object sender, EventArgs e)
+    {
+        // check existing username or email
+        // check passwords match
+
+        string[] args = new string[]
+        {
+            userNameEntry.Text,
+            passwordEntry.Text,
+            emailEntry.Text,
+            phoneNumberEntry.Text,
+            "0"
+        };
+        _ViewModel.Submit?.Execute(args);
     }
 }

@@ -20,7 +20,7 @@ namespace CommunityCompiler.ViewModels
             set
             {
                 _Events = value;
-                NotifyPropertyChanged(nameof(Events));
+                NotifyPropertyChanged("Events");
             }
         }
 
@@ -41,7 +41,6 @@ namespace CommunityCompiler.ViewModels
             foreach (JObject obj in arr)
             {
                 Event e = JsonConvert.DeserializeObject<Event>(obj.ToString());
-                Console.WriteLine(e);
                 temp.Add(e);
             }
             Console.WriteLine("Done");

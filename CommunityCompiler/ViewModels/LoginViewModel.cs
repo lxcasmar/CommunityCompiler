@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using CommunityCompiler.Models;
 using CommunityCompiler.Services;
 
 namespace CommunityCompiler.ViewModels
@@ -17,15 +18,18 @@ namespace CommunityCompiler.ViewModels
 		{
             _UserDataService = ServiceAid.GetService<UserDataService>();
 
-            Submit = new Command((args) =>
+            Submit = new Command(async (args) =>
 			{
 				string username = (args as String[])[0];
 				string password = (args as String[])[1];
 				// TODO: need to test edge case here. pretty sure it actually returns "null"
-				if (_UserDataService.Auth(username, password).Result is not null)
+				var res = await _UserDataService.Auth(username, password);
+                if ((res is not null) && (res.Length > 0 ) )
 				{
 					Console.WriteLine("Authication successfull");
-					UserSignedIn = true;
+					UserState._UserSignedIn = true;
+					UserState._CurUserName = username;
+					UserState._UserUuid = res;
 				} else
 				{
 					Console.WriteLine("Authentication failed");

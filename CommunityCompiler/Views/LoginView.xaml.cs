@@ -12,13 +12,14 @@ public partial class LoginView : ContentPage
         BindingContext = _ViewModel = ServiceAid.GetService<LoginViewModel>();
 	}
 
-    private async void homeBtn_clicked(object sender, EventArgs e)
+    private void loginBtn_clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new NavBar());
-    }
+        string[] args = new string[]
+        {
+            userNameEntry.Text,
+            passwordEntry.Text
+        };
 
-    private async void registerBtn_clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new RegisterView());
+        _ViewModel.Submit?.Execute(args);
     }
 }

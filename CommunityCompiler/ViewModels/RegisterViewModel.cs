@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using CommunityCompiler.Models;
 using CommunityCompiler.Services;
 
 namespace CommunityCompiler.ViewModels
@@ -17,18 +18,19 @@ namespace CommunityCompiler.ViewModels
 		{
             _UserDataService = ServiceAid.GetService<UserDataService>();
 
-            Submit = new Command((args) =>
+            Submit = new Command(async (args) =>
             {
                 string username = (args as String[])[0];
                 string password = (args as String[])[1];
                 string email = (args as String[])[2];
                 string phoneNumber = (args as String[])[3];
                 int isAdmin = Int32.Parse((args as String[])[4]);
-                var result = _UserDataService.CreateUser(username, password, email, phoneNumber, isAdmin);
-                if (result.Result)
+                var result = await _UserDataService.CreateUser(username, password, email, phoneNumber, isAdmin);
+                if (result)
                 {
                     Console.WriteLine("Successfully created user: " + username);
-                    UserSignedIn = true;
+                    UserState._UserSignedIn = true;
+                    UserState._CurUserName = username;
                 } else
                 {
                     Console.WriteLine("User creation failed");

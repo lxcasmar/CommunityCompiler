@@ -6,6 +6,8 @@ namespace CommunityCompiler.Models
 		public static bool _UserSignedIn { get; set; } = false;
 
 		public static string _UserUuid { get; set; } = null;
+
+		public static string _CurUserName { get; set; } = "";
 	}
 }
 
