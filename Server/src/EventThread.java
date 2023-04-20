@@ -142,10 +142,10 @@ public class EventThread extends Thread{
         switch(args.length) {
             case 6:
                 endDate = args[5];
-                sql = "INSERT INTO events (uuid, owner, name, description, location, startDate, endDate) VALUES (?,?,?,?,?,?,?)";
+                sql = "INSERT INTO events (uuid, owner, name, description, location, startDate, endDate, image, url, type) VALUES (?,?,?,?,?,?,?,?,?,?)";
             case 5:
                 if (sql == null) {
-                    sql = "INSERT INTO events (uuid, owner, name, description, location, startDate) VALUES (?,?,?,?,?,?)";
+                    sql = "INSERT INTO events (uuid, owner, name, description, location, startDate, image, url, type) VALUES (?,?,?,?,?,?,?,?,?)";
                 }
                 owneruuid = args[0];
                 name = args[1];
@@ -164,6 +164,9 @@ public class EventThread extends Thread{
             pstmt.setString(3, name);
             pstmt.setString(4, description);
             pstmt.setString(5, location);
+            pstmt.setString(6, "");
+            pstmt.setString(7, "");
+            pstmt.setString(8, "");
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             java.util.Date parsedDate;

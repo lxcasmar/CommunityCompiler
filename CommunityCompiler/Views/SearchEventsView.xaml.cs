@@ -45,11 +45,27 @@ namespace CommunityCompiler.Views
         {
             var _container = _ViewModel;
             EventsListView.BeginRefresh();
+            try
+            {
 
-            if (string.IsNullOrWhiteSpace(e.NewTextValue))
-                EventsListView.ItemsSource = _container.Events;
-            else
-                EventsListView.ItemsSource = _container.Events.Where(i => i.name.Contains(e.NewTextValue));
+                if (string.IsNullOrWhiteSpace(e.NewTextValue))
+                    EventsListView.ItemsSource = _container.Events;
+                else
+                {
+                    List<Event> temp = new List<Event>();
+                    foreach(Event t in _container.Events)
+                    {
+                        _ = t.name;
+                        temp.Add(t);
+                    }
+                    temp.RemoveAt(temp.Count - 1);
+                    EventsListView.ItemsSource = temp;
+                }
+                //    EventsListView.ItemsSource = _container.Events.Where(i => i.name.Contains(e.NewTextValue));
+            } catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
             EventsListView.EndRefresh();
         }
 

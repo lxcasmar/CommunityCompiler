@@ -33,7 +33,7 @@
                   Grid.Row="1"
                   SeparatorVisibility="None"
                   BackgroundColor="Transparent">
-            <!--<ListView.ItemTemplate>
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid Padding="10">
@@ -54,9 +54,8 @@
                                     <StackLayout>
                                         <StackLayout x:Name="labelContainer">
                                             <Label Text="{Binding name}" TextColor="Black"/>
-                                            <Label Text="mile(s)" TextColor="Grey" Margin="270,-3,0,0"/>
-                                            <Label Text="{Binding location}" TextColor="Gray"  Margin="0,-22,0,0"/>
-                                            <Label Text="{Binding startDate}" TextColor="Gray"/>
+                                            <!--<Label Text="{Binding location}" TextColor="Gray"  Margin="0,-22,0,0"/>
+                                            <Label Text="{Binding startDate}" TextColor="Gray"/>-->
                                         </StackLayout>
                                     </StackLayout>
                                 </Frame>
@@ -64,7 +63,7 @@
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
-            </ListView.ItemTemplate>-->
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </ContentPage>
